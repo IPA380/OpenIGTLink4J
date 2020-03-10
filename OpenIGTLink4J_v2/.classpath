@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src/examples"/>
+	<classpathentry kind="src" path="src/forTesting"/>
+	<classpathentry kind="src" path="src/framework"/>
+	<classpathentry kind="src" path="src/version1"/>
+	<classpathentry kind="src" path="src/version2"/>
+	<classpathentry kind="src" path="src/version3"/>
+	<classpathentry kind="src" path="test/framework"/>
+	<classpathentry kind="src" path="test/global"/>
+	<classpathentry kind="src" path="test/version1"/>
+	<classpathentry kind="src" path="test/version2"/>
+	<classpathentry kind="src" path="test/version3"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="lib/log/slf4j-api-1.7.28.jar" sourcepath="lib/log/slf4j-api-1.7.28-sources.jar"/>
+	<classpathentry kind="lib" path="lib/jblas.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
