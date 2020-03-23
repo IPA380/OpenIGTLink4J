@@ -31,7 +31,6 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import util.BytesArray;
 import util.Header;
-//import com.neuronrobotics.sdk.common.ByteList;
 
 import msg.OIGTL_DataMessage;
 
@@ -95,20 +94,20 @@ public class NDArrayMessage extends OIGTL_DataMessage {
 	 **/
 	public NDArrayMessage(String deviceName,  float[] data) {
 	  super(DATA_TYPE, deviceName);
-	  //This implements 1D Float array
+	  /*This implements 1D Float array */
 	  
 	  set1D_FloatData(data);
 	}
 
-//	/**
-//	 *** Constructor to be used to create message to send them with this
-//	 * constructor you must use method SetImageHeader, then CreateBody and then
-//	 * getBytes to send them
-//	 **/
-//	public NDArrayMessage(String deviceName, byte type, byte dim, short[] size, float[] data) {
-//		super(DATA_TYPE, deviceName);
-//	  	//TODO: THIS IS FOR NDimensional Array Implementation and its not implemented yet
-//	}
+	/*
+	 *** Constructor to be used to create message to send them with this
+	 * constructor you must use method SetImageHeader, then CreateBody and then
+	 * getBytes to send them	
+	public NDArrayMessage(String deviceName, byte type, byte dim, short[] size, float[] data) {
+		super(DATA_TYPE, deviceName);
+	  	TODO: THIS IS FOR NDimensional Array Implementation and its not implemented yet
+	}
+	*/
 
 	/**
 	 * Method to set one dimensional float data

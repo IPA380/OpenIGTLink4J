@@ -85,7 +85,7 @@ public class SensorMessage extends OIGTL_DataMessage {
 	 * 
 	 * @param length the new length
 	 */
-	@Deprecated //Andreas Rothfuss, 2019-05-09
+	@Deprecated /*Andreas Rothfuss, 2019-05-09 */
 	public void setLength(short n){
 		if (n <= 256){
 			sensorData.setLength(n);
@@ -171,7 +171,6 @@ public class SensorMessage extends OIGTL_DataMessage {
 	 * @param the new sensor data
 	 */
 	public void setSensorData(SensorData data) {
-//		this.setLength((short)data.getLength());
 		this.sensorData = data;
 	}
 

@@ -30,7 +30,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import msg.point.PointMessage;
 import msg.trajectory.TrajectoryMessage;
 import network.Client;
 import network.Server;

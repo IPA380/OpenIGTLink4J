@@ -117,10 +117,12 @@ public class StatusMessage extends OIGTL_DataMessage {
     public boolean UnpackBody(byte[] body) {
     	BytesArray bytesArray = new BytesArray();
         bytesArray.putBytes(body);
-        int code = (int) bytesArray.getLong(2); // Unsigned short 16bits
-        long subCode = bytesArray.getLong(8); // int 64
-        String errorName = bytesArray.getString(ERROR_NAME_LENGTH); // char 20
-        //Control status_data.length-IGTL_STATUS_HEADER_SIZE-1 == '\0' ???
+        /* Unsigned short 16bits */
+        int code = (int) bytesArray.getLong(2); 
+        /* int 64 */
+        long subCode = bytesArray.getLong(8); 
+        /* char 20 */
+        String errorName = bytesArray.getString(ERROR_NAME_LENGTH); 
         String statusString = bytesArray.getString(body.length-HEADER_SIZE-1);
         this.status = new Status(code, subCode, errorName, statusString);
         return true;
@@ -133,7 +135,6 @@ public class StatusMessage extends OIGTL_DataMessage {
         bytesArray.putLong(status.getSubCode(), 8);
         bytesArray.putString(status.getErrorName(), 20);
         bytesArray.putString(status.getStatusString());
-//        bytesArray.putByte((byte)0);
         
         return bytesArray.getBytes();
     }

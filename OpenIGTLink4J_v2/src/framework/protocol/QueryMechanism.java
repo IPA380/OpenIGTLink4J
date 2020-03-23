@@ -112,35 +112,38 @@ public class QueryMechanism {
 
 		/** Version 2 **/
 
-		/* BIND */		
-//				if ( dataType.equals(GetBindMessage.DATA_TYPE) )
-//					return BindMessage.DATA_TYPE;
+		/* BIND	
+			if ( dataType.equals(GetBindMessage.DATA_TYPE) )
+				return BindMessage.DATA_TYPE;
+	
+		/* ColorTable
+			if ( dataType.equals(GetColorTableMessage.DATA_TYPE) )
+				return ColorTableMessage.DATA_TYPE;	
 
-			/* ColorTable */		
-//					if ( dataType.equals(GetColorTableMessage.DATA_TYPE) )
-//						return ColorTableMessage.DATA_TYPE;	
+		/* ImageMeta	
+			if ( dataType.equals(GetImageMetaMessage.DATA_TYPE) )
+				return ImageMetaMessage.DATA_TYPE;
 
-			/* ImageMeta  */		
-//					if ( dataType.equals(GetImageMetaMessage.DATA_TYPE) )
-//						return ImageMetaMessage.DATA_TYPE;
+		/* LabelMeta	
+			if ( dataType.equals(GetLabelMetaMessage.DATA_TYPE) )
+				return LabelMetaMessage.DATA_TYPE;
 
-			/* LabelMeta  */		
-//					if ( dataType.equals(GetLabelMetaMessage.DATA_TYPE) )
-//						return LabelMetaMessage.DATA_TYPE;
-
-		/* NDARRAY */		
-//					if ( dataType.equals(GetNDArrayMessage.DATA_TYPE) )
-//						return NDArrayMessage.DATA_TYPE;
+		/* NDARRAY	
+			if ( dataType.equals(GetNDArrayMessage.DATA_TYPE) )
+				return NDArrayMessage.DATA_TYPE;
+		*/
 
 		/* POINT */		
 		if ( dataType.equals(GetPointMessage.DATA_TYPE) )
 			return PointMessage.DATA_TYPE;
-//		if ( dataType.equals(STTPointMessage.DATA_TYPE) || dataType.equals(STPPointMessage.DATA_TYPE))
-//			return RTSPointMessage.DATA_TYPE;
+		/*
+		if ( dataType.equals(STTPointMessage.DATA_TYPE) || dataType.equals(STPPointMessage.DATA_TYPE))
+			return RTSPointMessage.DATA_TYPE;
 
-			/* POLYDATA */		
-//					if ( dataType.equals(GetPolyDataMessage.DATA_TYPE) )
-//						return PolyDataMessage.DATA_TYPE;
+		/* POLYDATA 	
+		if ( dataType.equals(GetPolyDataMessage.DATA_TYPE) )
+			return PolyDataMessage.DATA_TYPE;
+		*/
 
 		/* QuaternionTrackingData */		
 		if ( dataType.equals(GetQuaternionTrackingDataMessage.DATA_TYPE) )
@@ -157,8 +160,10 @@ public class QueryMechanism {
 		/* STRING */		
 		if ( dataType.equals(GetStringMessage.DATA_TYPE) )
 			return StringMessage.DATA_TYPE;
-//		if ( dataType.equals(STTStringMessage.DATA_TYPE) || dataType.equals(STPStringMessage.DATA_TYPE))
-//			return RTSStringMessage.DATA_TYPE;
+		/*
+		if ( dataType.equals(STTStringMessage.DATA_TYPE) || dataType.equals(STPStringMessage.DATA_TYPE))
+			return RTSStringMessage.DATA_TYPE;
+		*/
 
 		/* TrackingData  */		
 		if ( dataType.equals(GetTrackingDataMessage.DATA_TYPE) )

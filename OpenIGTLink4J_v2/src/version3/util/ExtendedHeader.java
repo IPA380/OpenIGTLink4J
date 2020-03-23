@@ -52,7 +52,6 @@ public class ExtendedHeader {
      *            message ID int 32 bits
      **/
     public ExtendedHeader(int metaDataSize, long msgID) {
-        //this.extendedHeaderSize = extendedHeaderSize;
         this.metaDataSize = metaDataSize;
         this.msgID = msgID;
     }
@@ -78,10 +77,14 @@ public class ExtendedHeader {
         BytesArray bytesArray = new BytesArray();
         bytesArray.putBytes(bytes);
         
-        extendedHeaderSize = (int) bytesArray.getLong(2); // unsigned int 16bits
-        metaDataHeaderSize = (int) bytesArray.getLong(2); // unsigned int 16bits
-        metaDataSize = bytesArray.getULong(4); // unsigned int 16bits
-        msgID = bytesArray.getULong(4); // unsigned int 32 bits
+        /* unsigned int 16bits */
+        extendedHeaderSize = (int) bytesArray.getLong(2); 
+        /* unsigned int 16bits */
+        metaDataHeaderSize = (int) bytesArray.getLong(2); 
+        /* unsigned int 16bits */
+        metaDataSize = bytesArray.getULong(4); 
+        /* unsigned int 32 bits */
+        msgID = bytesArray.getULong(4); 
         
 		Logger log = LoggerFactory.getLogger(this.getClass());        
         log.debug("New extended header: "+this);
@@ -139,7 +142,6 @@ public class ExtendedHeader {
 		s+="EXT_HEADER_SIZE: "+getExtendedHeaderSize();
 		s+=" METADATA_SIZE: "+ getMetaDataSize();
 		s+=" MSG_ID: "+ getMsgID();
-		//s+=" bytes: "+new ByteList(getBytes());
 		return s;
 	}
 

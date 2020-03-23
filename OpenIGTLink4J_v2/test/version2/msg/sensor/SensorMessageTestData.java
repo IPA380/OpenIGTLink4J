@@ -11,9 +11,6 @@
  
 package msg.sensor;
 
-import msg.sensor.SI_EXP;
-import msg.sensor.SI_UNIT;
-import msg.sensor.Unit;
 import util.MessageTestHelper;
 
 public class SensorMessageTestData {

@@ -81,16 +81,6 @@ public class MockMessageParser {
 			return trajectories;
 		}
 		return null;
-	}
-	
-//	public static File getFile(Path path) {
-//		try {
-//			return path.toFile();
-//		} catch (NullPointerException e) {
-//			Log.info("File " + path + " is not available");
-//		}
-//		return null;
-//	}
-	
+	}	
 
 }

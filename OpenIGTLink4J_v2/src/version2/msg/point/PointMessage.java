@@ -109,7 +109,7 @@ public class PointMessage extends OIGTL_DataMessage{
 	 * @return the packed body size
 	 */
     static int getBodyPackSize(int nbOfElements){
-        // The body size sum of the header size and status message size.
+        /* The body size sum of the header size and status message size. */
         return PointElement.IGTL_POINT_ELEMENT_SIZE * nbOfElements;
     }
 	
@@ -119,7 +119,7 @@ public class PointMessage extends OIGTL_DataMessage{
 	 * @return the packed body size
 	 */
     int getBodyPackSize(){
-        // The body size sum of the header size and status message size.
+        /* The body size sum of the header size and status message size. */
         return getBodyPackSize(points.getNumberOfElements());
     }
     

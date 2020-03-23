@@ -28,7 +28,7 @@ public abstract class TrackingData {
 	public static int TRACKING_DATA_NAME_SIZE = 20;
 	/** Size of the serialized form of a {@link QuaternionTransformTrackingData} in bytes */
 	public static int SIZE = TRACKING_DATA_NAME_SIZE + 
-			2;// + Transform.IGTL_TRANSFORM_SIZE;
+			2;
 
 	/** Name (=Id) of the instrument/tracker */
 	protected String name;

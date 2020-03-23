@@ -35,8 +35,6 @@ import msg.status.GetStatusMessage;
 import msg.track.tdata.GetTrackingDataMessage;
 import msg.trajectory.GetTrajectoryMessage;
 import msg.transform.GetTransformMessage;
-import network.Client;
-import network.TestMessageHandler;
 
 public class QueryMechanismTest {
 

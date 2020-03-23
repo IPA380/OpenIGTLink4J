@@ -124,9 +124,9 @@ public class Unit{
 	 * @throws IllegalAccessException 
 	 */
 	public void append(SI_UNIT unit, SI_EXP exp) throws IllegalAccessException{
-	  // Check number of units already appended
-	if (this.nUnits < 6){
-			// Append
+		/* Check number of units already appended */
+		if (this.nUnits < 6){
+			/* Append */
 			this.unit[this.nUnits] = unit;
 			this.exp[this.nUnits] =  exp;
 			nUnits++;
@@ -214,10 +214,6 @@ public class Unit{
 		/** set prefix: first 4 bit */
 		retVal.prefix = SI_PREFIX.fromValue((byte) (bitRep & Byte.decode("0x0F")));	
 		bitRep = bitRep >> 4;
-		
-		//		if (bitRep != 0){
-		//			throw new Exception("checking failed");
-		//		}
 			
 		return retVal;
 	}

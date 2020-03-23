@@ -21,15 +21,14 @@ public class ImageMessageTestData {
     static float[] inS = new float[]{-0.196632f, 0.142857f, 0.970014f};
     static float[] inN = new float[]{0.222525f, 0.970014f, -0.0977491f};
     static float[] inOrigin = new float[]{46.0531f,19.4709f,46.0531f};
-//    static float[][] inMatrix = new float[][]{{inT[0],inS[0],inN[0],inOrigin[0]},
-//	                            {inT[1],inS[1],inN[1],inOrigin[1]},
-//	                            {inT[2],inS[2],inN[2],inOrigin[2]},
-//	                            {inT[3],inS[3],inN[3],inOrigin[3]}};
-    static int[]   size = new int[]{50, 50, 1};       // image dimension
-//    static double[] spacing = new double[]{1.0f, 1.0f, 1.0f};     // spacing (mm/pixel)
-    static int[]   svsize = new int[]{50, 50, 1};       // sub-volume size
-    static int[]   svoffset = new int[]{0, 0, 0};           // sub-volume offset
-//    static ImageScalarType   scalarType = ImageScalarType.TYPE_UINT8;// scalar type
+    /* image dimension */
+    static int[]   size = new int[]{50, 50, 1};       
+/*  /* spacing (mm/pixel) */
+    static double[] spacing = new double[]{1.0f, 1.0f, 1.0f};     
+	/* sub-volume size */
+    static int[]   svsize = new int[]{50, 50, 1};       
+    /* sub-volume offset */
+    static int[]   svoffset = new int[]{0, 0, 0};           
     
     static ImageHeader testHeader = new ImageHeader(size, inT, inS, inN, 
     		inOrigin, svoffset, svsize);

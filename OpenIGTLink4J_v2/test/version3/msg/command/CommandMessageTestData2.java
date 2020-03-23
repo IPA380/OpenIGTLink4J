@@ -42,7 +42,7 @@ public class CommandMessageTestData2 {
 	/*---------- String message body ------------*/
     
     static byte[] test_message_body_data = MessageTestHelper.convertCharToByte(new char[]{
-		  ////// Start of command message header
+		  /* Start of command message header */
 		  0x00, 0x00, 0x00, 0x05,                          /*Command ID*/
 		  0x54, 0x68, 0x69, 0x73, 0x20, 0x69, 0x73, 0x20,
 		  0x61, 0x20, 0x74, 0x65, 0x73, 0x74, 0x20, 0x63,
@@ -62,7 +62,7 @@ public class CommandMessageTestData2 {
 		  0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  /* Command name*/
 		  0x00, 0x03,                                      /* Encoding */
 		  0x00, 0x00, 0x00, 0x1A,                          /* Command length*/
-		  ////// End of command message header
+		  /* End of command message header */
 		  
 		  
 		  0x53, 0x74, 0x61, 0x72, 0x74, 0x20, 0x74, 0x68,

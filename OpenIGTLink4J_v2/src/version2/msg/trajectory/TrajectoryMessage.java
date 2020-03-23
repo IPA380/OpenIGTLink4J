@@ -105,8 +105,8 @@ public class TrajectoryMessage extends OIGTL_DataMessage{
 	 */
 	@Deprecated /*(2018-04-09)*/
 	static int GetBodyPackSize(Trajectory trajectory) {
-	    // The body size sum of the header size and status message size.
-	    return TrajectoryElement.IGTL_TRAJECTORY_ELEMENT_SIZE * trajectory.getNumberOfTrajectoryElements();
+	    /* The body size sum of the header size and status message size. */
+	    return getBodyPackSize(trajectory);
 	}
 	
 	/**
@@ -115,7 +115,7 @@ public class TrajectoryMessage extends OIGTL_DataMessage{
 	 * @return the packed body size
 	 */
 	static int getBodyPackSize(Trajectory trajectory) {
-	    // The body size sum of the header size and status message size.
+	    /* The body size sum of the header size and status message size. */
 	    return TrajectoryElement.IGTL_TRAJECTORY_ELEMENT_SIZE * trajectory.getNumberOfTrajectoryElements();
 	}
 
@@ -136,7 +136,7 @@ public class TrajectoryMessage extends OIGTL_DataMessage{
 	 * @return the packed body size
 	 */
 	int getBodyPackSize() {
-	    // The body size sum of the header size and status message size.
+	    /* The body size sum of the header size and status message size. */
 	    return getBodyPackSize(trajectory);
 	}
 	

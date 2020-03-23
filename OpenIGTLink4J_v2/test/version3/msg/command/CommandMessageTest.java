@@ -81,8 +81,8 @@ public class CommandMessageTest {
   	    		Arrays.copyOfRange(CommandMessageTestData.test_message, 35, 41),  Arrays.copyOfRange(toTest, 35, 41));
   	    assertArrayEquals("Testing packed message against gold standard: header bodySize", 
   	    		Arrays.copyOfRange(CommandMessageTestData.test_message, 42, 49),  Arrays.copyOfRange(toTest, 42, 49));
-//  	    assertArrayEquals("Testing packed message against gold standard: header crc", 
-//  	    		Arrays.copyOfRange(CommandMessageTestData.test_message, 50, 57),  Arrays.copyOfRange(toTest, 50, 57));
+  	    assertArrayEquals("Testing packed message against gold standard: header crc", 
+  	    		Arrays.copyOfRange(CommandMessageTestData.test_message, 50, 57),  Arrays.copyOfRange(toTest, 50, 57));
   	    assertArrayEquals("Testing packed message against gold standard: from timestamp", 
   	    		Arrays.copyOfRange(CommandMessageTestData.test_message, 58, CommandMessageTestData.test_message.length),
   	    		Arrays.copyOfRange(toTest, 58, toTest.length));

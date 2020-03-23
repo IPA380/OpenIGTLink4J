@@ -210,7 +210,6 @@ public abstract class AbstractElement {
 	 * @return
 	 */
 	public abstract byte[] convertToBytes();
-	//    public static abstract AbstractPoint fromBytes(byte[] bytes);
 	
 	
 	@Override

@@ -76,7 +76,7 @@ public abstract class OpenIGTMessage implements IOpenIGTLinkMessage{
             	String errorString = "Crc control fail during unpacking CRC is: " + 
             			actualCRC + " calculated: " + expectedCRC;
             	log.warn(errorString);
-//            	throw new IllegalArgumentException(errorString);
+            	/* throw new IllegalArgumentException(errorString); */
             }
 	        
 	        byte[] bodyBytes;

@@ -156,7 +156,7 @@ public class Points {
 
 		@Override
 		public int compare(T o1, T o2) {
-	        // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+	        /* -1 - less than, 1 - greater than, 0 - equal, all inversed for descending */
 	        int criteriaAscending = getCriteria(o1) > getCriteria(o2) ? 1 : 
 	        	(getCriteria(o1) < getCriteria(o2)) ? -1 : 0;
 	        if (order == SortingOrder.DESCENDING) {
@@ -200,7 +200,7 @@ public class Points {
 		BytesArray bytesArray = new BytesArray();
 		bytesArray.putBytes(data);
 		  
-		// TODO: have a look at little / big endian conversion
+		/* TODO: have a look at little / big endian conversion */
 		for (int iter = 0; iter < nElement; iter ++){
 			PointElement element = PointElement.fromBytes(bytesArray.getBytes(PointElement.IGTL_POINT_ELEMENT_SIZE));
 		    retVal.addElement(element);

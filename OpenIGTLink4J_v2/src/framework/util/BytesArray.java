@@ -32,7 +32,6 @@ public class BytesArray {
 	private int index = 0;
 	/** the standard charset for encoding strings */
 	Charset charset = Charset.forName("US-ASCII");
-	// ------------------------------------------------------------------------
 
 	/**
 	 * @return the charset
@@ -40,9 +39,7 @@ public class BytesArray {
 	public Charset getCharset() {
 		return charset;
 	}
-
-	//private static final long[] CRC_TABLE;
-	//private static final long crc64Polynomial = 0xC96C5795D7870F42L;
+	
 	/** CRC table to compute CRCs by */
 	private static final long[] CRC_TABLE={
 			    0x0000000000000000L,0x42F0E1EBA9EA3693L,
@@ -173,38 +170,16 @@ public class BytesArray {
 			    0x913F6188692D6F4BL,0xD3CF8063C0C759D8L,
 			    0x5DEDC41A34BBEEB2L,0x1F1D25F19D51D821L,
 			    0xD80C07CD676F8394L,0x9AFCE626CE85B507L	};
-	//static {
-	//	CRC_TABLE = new long[0x100];
-		/*for (int i = 0; i < 0x100; i++) {
-			long v = i;
-			for (int j = 0; j < 8; j++) {
-				// is current coefficient set?
-				if ((v & 1) == 1) {
-					// yes, then assume it gets zero'd (by implied x^64
-					// coefficient of dividend)
-					// and add rest of the divisor
-					v = (v >>> 1) ^ crc64Polynomial;
-				} else {
-					// no? then move to next coefficient
-					v = (v >>> 1);
-				}
-			}
-			// Log.trace("0x" + Long.toHexString(v));
-			CRC_TABLE[i] = v;
-		}*/
-		
-
-		//Log.trace("\n CRC table");
-		//Log.trace(CRC_TABLE + "\n");
-	//}
-
+	
 	/**
 	 *** Destination Constructor
 	 **/
 	public BytesArray() {
 		this.bytesArray = new byte[0];
-		this.size = 0; // no 'size' yet
-		this.index = 0; // start at index '0' for writing
+		/* no 'size' yet */
+		this.size = 0; 
+		/* start at index '0' for writing */
+		this.index = 0; 
 	}
 
 	/**
@@ -226,7 +201,7 @@ public class BytesArray {
 			this.size = bytesArray.length;
 			return nLen;
 		}
-		// nothing to write
+		/* nothing to write */
 		return 0;
 	}
 
@@ -305,8 +280,8 @@ public class BytesArray {
 	 * @return A copy of the current bytesArray (as-is)
 	 **/
 	public byte[] getBytes() {
-		// return the full copy bytesArray (regardless of the state of
-		// 'this.index')
+		/* return the full copy bytesArray (regardless of the state of
+		 * 'this.index')  */
 		byte n[] = new byte[this.size];
 		System.arraycopy(bytesArray, 0, n, 0, this.size);
 		return n;
@@ -321,11 +296,11 @@ public class BytesArray {
 	 * @return A copy of the current bytesArray or byte[0]
 	 **/
 	public byte[] getBytes(int length) {
-		// This will read 'length' bytes, or the remaining bytes, whichever is
-		// less
+		/* This will read 'length' bytes, or the remaining bytes, whichever is
+		 * less */
 		int maxLen = ((length >= 0) && ((this.index + length) <= this.size)) ? length : (this.size - this.index);
 		if (maxLen <= 0) {
-			// no room left
+			/* no room left */
 			return new byte[0];
 		} else {
 			byte n[] = new byte[maxLen];
@@ -346,7 +321,7 @@ public class BytesArray {
 		int maxLen = ((this.index + length) <= this.size) ? length
 				: (this.size - this.index);
 		if (maxLen <= 0) {
-			// nothing to read
+			/* nothing to read */
 			return 0L;
 		} else {
 			byte n[] = getBytes(maxLen);
@@ -365,7 +340,7 @@ public class BytesArray {
 	public long getULong(int length) {
 		int maxLen = ((this.index + length) <= this.size) ? length : (this.size - this.index);
 		if (maxLen <= 0) {
-			// nothing to read
+			/* nothing to read */
 			return 0L;
 		} else {
 			byte n[] = getBytes(maxLen);
@@ -383,11 +358,11 @@ public class BytesArray {
 	 **/
 	
 	public double getDouble(int length) {
-		// 'length' must be at least 4
+		/* 'length' must be at least 4 */
 		int maxLen = ((this.index + length) <= this.size) ? length
 				: (this.size - this.index);
 		if (maxLen <= 0) {
-			// nothing to read
+			/* nothing to read */
 			return 0.0;
 		} else {
 			byte n[] = getBytes(maxLen);
@@ -413,19 +388,19 @@ public class BytesArray {
 	 *** @return The read String
 	 **/
 	public String getString(int length, boolean varLength) {
-		// Read until (whichever comes first):
-		// 1) length bytes have been read
-		// 2) a null (0x00) byte is found (if 'varLength==true')
-		// 3) end of data is reached
+		/* Read until (whichever comes first):
+		 * 1) length bytes have been read
+		 * 2) a null (0x00) byte is found (if 'varLength==true')
+		 * 3) end of data is reached */
 		int m;
 		if (length > this.size)
 			length = this.size;
 		if (varLength) {
-			// look for the end-of-data, or a terminating null (0x00)
+			/* look for the end-of-data, or a terminating null (0x00) */
 			for (m = 0; m < length && (this.bytesArray[this.index + m] != 0); m++)
 				;
 		} else {
-			// look for end of data only
+			/* look for end of data only */
 			m = length;
 		}
 		return getString(m);
@@ -440,14 +415,16 @@ public class BytesArray {
 	 **/
 	public String getString(int len) {
 		if (bytesArray == null) {
-			return null; // what goes around ...
+			/* what goes around ... */
+			return null; 
 		} else if (len <= 0) {
-			return ""; // empty length
+			/* empty length */
+			return ""; 
 		} else {
 			int ofs = this.index;
 			this.index += len;
 			try {
-				// Convert bytes to a string.
+				/* Convert bytes to a string. */
 				byte[] newData = new byte[len];
 				System.arraycopy(bytesArray, ofs, newData, 0, len);
 				int i;
@@ -460,7 +437,7 @@ public class BytesArray {
 								.wrap(new String(bytesArray, ofs, i, charset)));
 				return Charset.defaultCharset().decode(bb).toString();
 			} catch (Throwable t) {
-				// This should NEVER occur (at least not because of the charset)
+				/* This should NEVER occur (at least not because of the charset) */
 				return "";
 			}
 		}
@@ -606,25 +583,24 @@ public class BytesArray {
 	 *** @return The number of bytes written
 	 **/
 	public int putDouble(double val, int wrtLen) {
-		// 'wrtLen' should be either 4 or 8
-
+		/* 'wrtLen' should be either 4 or 8 */
 		/* check for nothing to write */
 		if (wrtLen <= 0) {
-			// nothing to write
+			/* nothing to write */
 			return 0;
 		}
 		/* write float/double */
 		if (wrtLen < 4) {
-			// not enough bytes to encode float/double
+			/* not enough bytes to encode float/double */
 			return 0;
 		}
 		/* write float/double */
 		if (wrtLen < 8) {
-			// 4 <= wrtLen < 8 [float]
+			/* 4 <= wrtLen < 8 [float] */
 			byte n[] = encodeDouble(4, val);
 			return putBytes(n);
 		} else {
-			// 8 <= wrtLen [double]
+			/* 8 <= wrtLen [double] */
 			byte n[] = encodeDouble(8, val);
 			return putBytes(n);
 		}
@@ -657,7 +633,7 @@ public class BytesArray {
 		/* empty string ('maxLen' is at least 1) */
 		if ((s == null) || s.equals("")) {
 			byte n[] = new byte[1];
-			n[0] = (byte) 0; // string terminator
+			n[0] = (byte) 0; /* string terminator */
 			return putBytes(n);
 		}
 		/* write string bytes, and adjust pointers */
@@ -727,7 +703,7 @@ public class BytesArray {
 	 *** @return The decoded value, or 0L
 	 **/
 	public long decodeLong(byte data[], int ofs, boolean signed) {
-		//BigInteger test = new BigInteger(1, data);
+		/*BigInteger test = new BigInteger(1, data); */
 		if (data != null) {
 			int len = data.length - ofs;
 			long n = (signed && ((data[ofs] & 0x80) != 0)) ? -1L : 0L;
@@ -751,13 +727,13 @@ public class BytesArray {
 	 * @return the bytes array created from the value
 	 **/
 	public byte[] encodeDouble(int len, double val) {
-		// 'len' must be at least 4
+		/* 'len' must be at least 4 */
 		if (len >= 4) {
 			byte data[] = new byte[len];
 			int flen = (len >= 8) ? 8 : 4;
 			long n = (flen == 8) ? Double.doubleToRawLongBits(val)
 					: (long) Float.floatToRawIntBits((float) val);
-			// Big-Endian order
+			/* Big-Endian order */
 			for (int i = (flen - 1); i >= 0; i--) {
 				data[i] = (byte) (n & 0xFF);
 				n >>>= 8;
@@ -780,13 +756,13 @@ public class BytesArray {
 	 *** @return The decoded value, or 0L
 	 **/
 	public double decodeDouble(byte data[], int ofs) {
-		// 'len' must be at lest 4
+		/* 'len' must be at lest 4 */
 		if ((data != null) && (data.length >= 4)) {
 			int len = data.length - ofs;
 			int flen = (len >= 8) ? 8 : 4;
 			long n = 0L;
-			// Big-Endian order
-			// { 0x01, 0x02, 0x03, 0x04 } -> 0x01020304
+			/* Big-Endian order
+			 * { 0x01, 0x02, 0x03, 0x04 } -> 0x01020304 */
 			for (int i = ofs; i < ofs + flen; i++) {
 				n = (n << 8) | ((long) data[i] & 0xFF);
 			}
@@ -813,9 +789,9 @@ public class BytesArray {
 		bytesArray = newData;
 	}
 
-	// Inspire from www.pps.jussieu.fr/~balat/Timestamp.java spec from rfc2030
-	// but starting
-	// date 00:00:00 January 1, 1970, UTC (instead of 1900)
+	/* Inspire from www.pps.jussieu.fr/~balat/Timestamp.java spec from rfc2030
+	/* but starting
+	/* date 00:00:00 January 1, 1970, UTC (instead of 1900)  */
 	/**
 	 * Encodes a time in millisec in a 8 bytes array
 	 *** 
@@ -824,14 +800,16 @@ public class BytesArray {
 	 *** @return The byte array containing the timestamp
 	 */
 	public byte[] encodeTimeStamp(long t) {
-		long s, f; // s = seconds part, f = fraction part
+		/* s = seconds part, f = fraction part */
+		long s, f; 
 		s = (t / 1000L);
 		byte array[] = new byte[8];
 		array[0] = (byte) (s >> 24);
 		array[1] = (byte) ((s >> 16) & 0xFF);
 		array[2] = (byte) ((s >> 8) & 0xFF);
 		array[3] = (byte) (s & 0xFF);
-		f = (t % 1000L) * 1000L * 4295; // 4295 = approximation de 10^-6*2^32
+		/* 4295 = approximation de 10^-6*2^32 */
+		f = (t % 1000L) * 1000L * 4295; 
 		array[4] = (byte) (f >> 24);
 		array[5] = (byte) ((f >> 16) & 0xFF);
 		array[6] = (byte) ((f >> 8) & 0xFF);
@@ -839,9 +817,9 @@ public class BytesArray {
 		return array;
 	}
 
-	// Inspire from www.pps.jussieu.fr/~balat/Timestamp.java spec from rfc2030
-	// but starting
-	// date 00:00:00 January 1, 1970, UTC (instead of 1900)
+	/* Inspire from www.pps.jussieu.fr/~balat/Timestamp.java spec from rfc2030
+	/* but starting
+	/* date 00:00:00 January 1, 1970, UTC (instead of 1900) */
 	/**
 	 * Encodes a time in millisec in a 8 bytes array
 	 *** 
@@ -854,7 +832,7 @@ public class BytesArray {
 	 *** @return The byte array containing the timestamp
 	 */
 	public byte[] encodeTimeStamp(long s, long f) {
-		// s = seconds part, f = fraction part
+		/* s = seconds part, f = fraction part */
 		byte array[] = new byte[8];
 		array[0] = (byte) (s >> 24);
 		array[1] = (byte) ((s >> 16) & 0xFF);
@@ -917,14 +895,18 @@ public class BytesArray {
 			int i=0;
 			int tableIndex=0;
 			while (i<len){
-				char unsignedCharCrc56 = (char)((crc>>56) & 0xFF);//Java does not support unsigned data types so this is workaround to convert byte to unsigned int-char
-				char unsignedCharBuf = (char)buffer[i];
-				unsignedCharBuf = (char)(unsignedCharBuf & 0xFF); //Java does not support unsigned data types so this is workaround to convert byte to unsigned int-char
-				
+				/* Java does not support unsigned data types so this is workaround
+				 * to convert byte to unsigned int-char */				
+				char unsignedCharCrc56 = (char)((crc>>56) & 0xFF);char unsignedCharBuf = (char)buffer[i];
+				/* Java does not support unsigned data types so this is workaround
+				 * to convert byte to unsigned int-char */				
+				unsignedCharBuf = (char)(unsignedCharBuf & 0xFF); 
 				tableIndex = Math.abs( unsignedCharBuf ^ unsignedCharCrc56 );
 				
 		        crc = CRC_TABLE[tableIndex] ^ (crc << 8);
-				//System.out.println( "data=" + shrtBfr + " , unsigned crc>>56=" + (int)shrtcrc56 +  ", Index=" + tableIndex + ", crc=" + crc) ;
+				/* System.out.println( "data=" + shrtBfr + " , unsigned crc>>56=" + 
+				 * (int)shrtcrc56 +  ", Index=" + tableIndex + ", crc=" + crc) ;
+				 */
 		        i++;
 		    }
 		    return crc;

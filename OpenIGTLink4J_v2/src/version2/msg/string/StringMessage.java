@@ -84,7 +84,7 @@ public class StringMessage extends OIGTL_DataMessage{
 	public boolean UnpackBody(byte[] body) {
 		encoding  = ByteBuffer.wrap(body, 0,2).getShort();
 		length = ByteBuffer.wrap(body, 2,2).getShort();
-		//TODO always US-ASCII may be need to update if required
+		/* TODO always US-ASCII may be need to update if required */
 		try {
 			message = new String(body, 4, body.length-4, "US-ASCII");
 		} catch (UnsupportedEncodingException e) {}

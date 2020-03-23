@@ -78,13 +78,18 @@ public class Header {
 	    BytesArray bytesArray = new BytesArray();
 	    bytesArray.putBytes(bytes);
 	    
-	    version = bytesArray.getLong(2); // unsigned int 16bits
-	    dataType = bytesArray.getString(12); // char 12 bits
-	    deviceName = bytesArray.getString(20); // char 20 bits
+	     /* unsigned int 16bits */
+	    version = bytesArray.getLong(2);
+	    /* char 12 bits */
+	    dataType = bytesArray.getString(12); 
+	    /* char 20 bits */
+	    deviceName = bytesArray.getString(20); 
 	    timeStampSec = bytesArray.getLong(4);
 	    timeStampSecFrac = bytesArray.getLong(4);
-	    body_size = bytesArray.getULong(8); // unsigned int 64 bits
-	    crc = bytesArray.getULong(8); // unsigned int 64 bits
+	    /* unsigned int 64 bits */
+	    body_size = bytesArray.getULong(8);  
+	    /* unsigned int 64 bits */
+	    crc = bytesArray.getULong(8);
 	    
 	    LoggerFactory.getLogger(this.getClass()).trace("New header: "+this, Byte.MAX_VALUE);
 	}
@@ -234,7 +239,6 @@ public class Header {
 		s+=" Timestamp: "+getTimeStamp();
 		s+=" Body Size:"+getBodySize();
 		s+=" CRC: "+getCrc();
-		//s+=" bytes: "+new ByteList(getBytes());
 		return s;
 	}
 }

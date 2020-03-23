@@ -98,7 +98,7 @@ public abstract class MockMessageData<T> {
             try{
                 buffReader.close();
             }catch(IOException ioe1){
-                //Leave It
+                /* Leave It */
             }
         }
         return retVal;

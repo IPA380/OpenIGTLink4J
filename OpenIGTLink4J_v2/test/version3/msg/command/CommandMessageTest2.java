@@ -89,17 +89,15 @@ public class CommandMessageTest2 {
   	    		Arrays.copyOfRange(CommandMessageTestData2.test_message, 35, 41),  Arrays.copyOfRange(toTest, 35, 41));
   	    assertArrayEquals("Testing packed message against gold standard: header bodySize", 
   	    		Arrays.copyOfRange(CommandMessageTestData2.test_message, 42, 49),  Arrays.copyOfRange(toTest, 42, 49));
-//  	    assertArrayEquals("Testing packed message against gold standard: header crc", 
-//  	    		Arrays.copyOfRange(CommandMessageTestData2.test_message, 50, 57),  Arrays.copyOfRange(toTest, 50, 57));
+  	    assertArrayEquals("Testing packed message against gold standard: header crc", 
+  	    		Arrays.copyOfRange(CommandMessageTestData2.test_message, 50, 57),  Arrays.copyOfRange(toTest, 50, 57));
   	    int currentCount = 58;
   	    byte[] testArray = Arrays.copyOfRange(toTest, currentCount, currentCount += ExtendedHeader.LENGTH);
   	    assertArrayEquals("Testing packed message against gold standard: extended header", 
   	    		CommandMessageTestData2.test_message_extended_header, testArray);
-//  	    currentCount++;
   	    testArray = Arrays.copyOfRange(toTest, currentCount, currentCount += CommandMessageTestData2.test_message_body_data.length);
   	    assertArrayEquals("Testing packed message against gold standard: body data", 
   	    		CommandMessageTestData2.test_message_body_data, testArray);
-//  	    currentCount++;
   	    testArray =	Arrays.copyOfRange(toTest, currentCount, currentCount += CommandMessageTestData2.test_message_meta_data.length);
   	    assertArrayEquals("Testing packed message against gold standard: metaData", 
   	    		CommandMessageTestData2.test_message_meta_data, testArray);

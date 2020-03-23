@@ -103,7 +103,7 @@ public class Trajectory {
 		BytesArray bytesArray = new BytesArray();
 		bytesArray.putBytes(trajectory_data);
 		  
-		// TODO: have a look at little / big endian conversion
+		/* TODO: have a look at little / big endian conversion */
 		for (int iter = 0; iter < nElement; iter ++){
 			TrajectoryElement element = TrajectoryElement.fromBytes(bytesArray.getBytes(TrajectoryElement.IGTL_TRAJECTORY_ELEMENT_SIZE));
 		    retVal.addTrajectoryElement(element);

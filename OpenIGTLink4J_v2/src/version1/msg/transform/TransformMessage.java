@@ -12,7 +12,6 @@
 package msg.transform;
 
 import util.Header;
-//import com.neuronrobotics.sdk.common.ByteList;
 
 import msg.OIGTL_DataMessage;
 

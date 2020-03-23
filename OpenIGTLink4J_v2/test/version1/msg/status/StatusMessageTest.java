@@ -23,7 +23,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import msg.status.StatusMessage;
 import msg.trajectory.TrajectoryMessage;
 import util.Header;
 
@@ -80,8 +79,8 @@ public class StatusMessageTest {
   	    		Arrays.copyOfRange(StatusMessageTestData.test_message, 35, 41),  Arrays.copyOfRange(toTest, 35, 41));
   	    assertArrayEquals("Testing packed message against gold standard: header bodySize", 
   	    		Arrays.copyOfRange(StatusMessageTestData.test_message, 42, 49),  Arrays.copyOfRange(toTest, 42, 49));
-//  	    assertArrayEquals("Testing packed message against gold standard: header crc", 
-//  	    		Arrays.copyOfRange(test_message, 50, 57),  Arrays.copyOfRange(toTest, 50, 57));
+  	    assertArrayEquals("Testing packed message against gold standard: header crc", 
+  	    		Arrays.copyOfRange(StatusMessageTestData.test_message, 50, 57),  Arrays.copyOfRange(toTest, 50, 57));
   	    assertArrayEquals("Testing packed message against gold standard: body", 
   	    		Arrays.copyOfRange(StatusMessageTestData.test_message, 58, StatusMessageTestData.test_message.length),
   	    		Arrays.copyOfRange(toTest, 58, toTest.length));

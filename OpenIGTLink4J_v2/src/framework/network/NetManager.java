@@ -142,10 +142,8 @@ public class NetManager implements IOpenIGTMessageSender{
 	 * 		the {@link IOException} that occured
 	 */
 	public void report(IOException e) {
-//		if(isConnected()) {
-			stop();
-			networkNode.report(e, this);
-//		}
+		stop();
+		networkNode.report(e, this);
 	}
 
 	/**

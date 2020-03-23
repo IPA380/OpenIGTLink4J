@@ -166,7 +166,6 @@ public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 		log.info("Client " + netManager.getSocketInetAdressString() + " disconnected");
 		netManager.stop();
 		netManagers.remove(netManager);
-	//		this.notify();
 	}
 
 	/**

@@ -123,7 +123,8 @@ public class MetaData {
 		/** put meta data header **/
 		for (int i = 0; i < keys.size(); i++) {
 			bytesArray.putLong(keys.get(i).length(), 2);
-			bytesArray.putLong(3, 2); //Encoding: US-ASCII
+			/*Encoding: US-ASCII */
+			bytesArray.putLong(3, 2); 
 			bytesArray.putLong(values.get(i).length(), 4);
 		}
 		/** put meta data **/

@@ -65,17 +65,19 @@ public class Transform {
 		BytesArray bytesArray = new BytesArray();
 		bytesArray.putBytes(bytes);
 
-		// the 3x3 rotation matrix
+		/* the 3x3 rotation matrix */
 		rotationMatrix = new float[3][3];
 		for (int i = 0; i < 3; i++){
 			for (int j = 0; j < 3; j++){
-				rotationMatrix[j][i] = (float) bytesArray.getDouble(4); // float32
+				/* float32 */
+				rotationMatrix[j][i] = (float) bytesArray.getDouble(4); 
 			}      
 		}
 		        
 		origin = new float[3];
 		for(int i=0;i<3;i++){
-			origin[i] = (float) bytesArray.getDouble(4); // float32
+			/* float32 */
+			origin[i] = (float) bytesArray.getDouble(4); 
 		}
 		log = LoggerFactory.getLogger(this.getClass());
 	}
@@ -155,9 +157,6 @@ public class Transform {
 	 */
 	public void setRotation(float column1[], float column2[], float column3[]) {
 		rotationMatrix = new float[3][3];
-//		this.t = column1;
-//		this.s = column2;
-//		this.n = column3;
 		
 		rotationMatrix[0][0] = column1[0];
 		rotationMatrix[1][0] = column1[1];

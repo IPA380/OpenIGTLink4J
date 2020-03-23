@@ -90,7 +90,6 @@ public class CommandMessage extends OIGTL_DataMessage {
 
 		try {
 			command = encoding.decode(bytesArray.getBytes((int) length));
-//			command = MIBenum.decodeVaule(bytesArray.getBytes((int) length), encoding.ordinal());
 		} catch (UnsupportedEncodingException e) {
 			throw new IllegalArgumentException("The encoding " + 
 					encoding + " is not supported.");
@@ -105,7 +104,8 @@ public class CommandMessage extends OIGTL_DataMessage {
 		
 		bytesArray.putLong(commandId, 4);
 		bytesArray.putString(commandName, COMMAND_NAME_SIZE);
-		bytesArray.putLong(3, 2); //Encoding: US-ASCII
+		/*Encoding: US-ASCII */
+		bytesArray.putLong(3, 2); 
 		bytesArray.putLong(command.length(), 4);
 		bytesArray.putString(command);
 		

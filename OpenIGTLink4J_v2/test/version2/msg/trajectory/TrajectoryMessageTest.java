@@ -23,7 +23,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import msg.trajectory.TrajectoryMessage;
 import util.Header;
 
 /**

@@ -19,7 +19,7 @@ package msg.sensor;
  *
  */
 public enum SI_UNIT{
-	// SI Base Units
+	/** SI Base Units */
 	BASE_NONE(0x00),
 	BASE_METER(0x01), 	/* meter */
 	BASE_GRAM(0x02), 	/* gram */
@@ -29,7 +29,7 @@ public enum SI_UNIT{
 	BASE_MOLE(0x06), 	/* mole */
 	BASE_CANDELA(0x07), /* candela */
 	
-	// SI Derived Units
+	/** SI Derived Units */
 	DERIVED_RADIAN  (0x08),  /* radian     meter/meter */
 	DERIVED_STERADIAN(0x09), /* steradian  meter^2/meter^2 */
 	DERIVED_HERTZ   (0x0A),  /* hertz      /second */

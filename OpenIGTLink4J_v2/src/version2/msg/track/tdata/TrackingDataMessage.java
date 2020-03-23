@@ -71,7 +71,7 @@ public class TrackingDataMessage extends OIGTL_DataMessage {
 		
 		int nElement = body.length / TransformTrackingData.SIZE;
 		  
-		// TODO: have a look at little / big endian conversion
+		/* TODO: have a look at little / big endian conversion */
 		for (int iter = 0; iter < nElement; iter ++){
 			TransformTrackingData element = new TransformTrackingData(
 					bytesArray.getBytes(TransformTrackingData.SIZE));

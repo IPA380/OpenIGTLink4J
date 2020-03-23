@@ -26,9 +26,6 @@ public class SensorData {
 
 	protected static final int maxArrayLength = 255;
 	
-	/** Length of the sensor data array (0-255) */
-	@Deprecated //Andreas Rothfuss, 2019-05-09
-	short length;
 	/** Sensor status */
 	short status;
 	/** {@link Unit} of the sensor data*/
@@ -57,11 +54,10 @@ public class SensorData {
 	 * 
 	 * @param length the new length
 	 */
-	@Deprecated //Andreas Rothfuss, 2019-05-09
+	@Deprecated /* Andreas Rothfuss, 2019-05-09 */
 	public void setLength(short length) {
 		if (length > 255)
 			throw new IllegalArgumentException("Data set can not be larger than 255 entries");
-		this.length = length;
 		array = new double[length];
 	}
 	
@@ -165,7 +161,7 @@ public class SensorData {
 		BytesArray bytesArray = new BytesArray();
 		bytesArray.putBytes(sensorBytes);
 		
-		// Copy data
+		/* Copy data */
 		int arrayLength = (int) bytesArray.getULong(1);
 		deserializeStatusUnitAndArray(retVal, bytesArray, arrayLength);
 		

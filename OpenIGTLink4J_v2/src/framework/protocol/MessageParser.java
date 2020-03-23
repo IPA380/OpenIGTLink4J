@@ -152,53 +152,56 @@ public class MessageParser {
 	
 				/** Version 2 **/
 	
-				/* BIND */	
-				//TODO: Implement BindMessage	
-	//					if ( dataType.equals(BindMessage.DATA_TYPE) )
-	//						return new BindMessage(header, body);
-				//TODO: Implement GetBindMessage
-	//					if ( dataType.equals(GetBindMessage.DATA_TYPE) )
-	//						return new GetBindMessage(header, body);
-				//TODO: Implement STT_BindMessage	
-	//					if ( dataType.equals(STTBindMessage.DATA_TYPE) )
-	//						return new STTBindMessage(header, body);
-				//TODO: Implement STP_BindMessage	
-	//					if ( dataType.equals(STPBindMessage.DATA_TYPE) )
-	//						return new STPBindMessage(header, body);
-				//TODO: Implement RTS_BindMessage	
-	//					if ( dataType.equals(RTSBindMessage.DATA_TYPE) )
-	//						return new RTSBindMessage(header, body);	
+				/* BIND 
+				TODO: Implement BindMessage	
+						if ( dataType.equals(BindMessage.DATA_TYPE) )
+							return new BindMessage(header, body);
+				TODO: Implement GetBindMessage
+						if ( dataType.equals(GetBindMessage.DATA_TYPE) )
+							return new GetBindMessage(header, body);
+				TODO: Implement STT_BindMessage	
+						if ( dataType.equals(STTBindMessage.DATA_TYPE) )
+							return new STTBindMessage(header, body);
+				TODO: Implement STP_BindMessage	
+						if ( dataType.equals(STPBindMessage.DATA_TYPE) )
+							return new STPBindMessage(header, body);
+				TODO: Implement RTS_BindMessage	
+						if ( dataType.equals(RTSBindMessage.DATA_TYPE) )
+							return new RTSBindMessage(header, body);	
 	
-					/* ColorTable */		
-				//TODO: Implement ColorTableMessage	
-	//						if ( dataType.equals(ColorTableMessage.DATA_TYPE) )
-	//							return new ColorTableMessage(header, body);
-				//TODO: Implement GetColorTableMessage
-	//						if ( dataType.equals(GetColorTableMessage.DATA_TYPE) )
-	//							return new GetColorTableMessage(header, body);	
+				/* ColorTable 		
+				TODO: Implement ColorTableMessage	
+							if ( dataType.equals(ColorTableMessage.DATA_TYPE) )
+								return new ColorTableMessage(header, body);
+				TODO: Implement GetColorTableMessage
+							if ( dataType.equals(GetColorTableMessage.DATA_TYPE) )
+								return new GetColorTableMessage(header, body);	
 	
-					/* ImageMeta  */
-				//TODO: Implement ImageMetaMessage		
-	//						if ( dataType.equals(ImageMetaMessage.DATA_TYPE) )
-	//							return new ImageMetaMessage(header, body);
-				//TODO: Implement GetImageMetaMessage
-	//						if ( dataType.equals(GetImageMetaMessage.DATA_TYPE) )
-	//							return new GetImageMetaMessage(header, body);
+				/* ImageMeta  
+				TODO: Implement ImageMetaMessage		
+							if ( dataType.equals(ImageMetaMessage.DATA_TYPE) )
+								return new ImageMetaMessage(header, body);
+				TODO: Implement GetImageMetaMessage
+							if ( dataType.equals(GetImageMetaMessage.DATA_TYPE) )
+								return new GetImageMetaMessage(header, body);
 	
-					/* LabelMeta  */	
-				//TODO: Implement LabelMetaMessage	
-	//						if ( dataType.equals(LabelMetaMessage.DATA_TYPE) )
-	//							return new LabelMetaMessage(header, body);
-				//TODO: Implement GetLabelMetaMessage
-	//						if ( dataType.equals(GetLabelMetaMessage.DATA_TYPE) )
-	//							return new GetLabelMetaMessage(header, body);
+				/* LabelMeta 	
+				TODO: Implement LabelMetaMessage	
+							if ( dataType.equals(LabelMetaMessage.DATA_TYPE) )
+								return new LabelMetaMessage(header, body);
+				TODO: Implement GetLabelMetaMessage
+							if ( dataType.equals(GetLabelMetaMessage.DATA_TYPE) )
+								return new GetLabelMetaMessage(header, body);
+				*/
 	
 				/* NDARRAY */		
 				if ( dataType.equals(NDArrayMessage.DATA_TYPE) )
 					return new NDArrayMessage(header, body);
-				//TODO: Implement GetNDArrayMessage
-	//						if ( dataType.equals(GetNDArrayMessage.DATA_TYPE) )
-	//							return new GetNDArrayMessage(header, body);
+				/*
+				TODO: Implement GetNDArrayMessage
+							if ( dataType.equals(GetNDArrayMessage.DATA_TYPE) )
+								return new GetNDArrayMessage(header, body);
+				*/
 	
 				/* POINT */		
 				if ( dataType.equals(PointMessage.DATA_TYPE) )
@@ -206,22 +209,23 @@ public class MessageParser {
 				if ( dataType.equals(GetPointMessage.DATA_TYPE) )
 					return new GetPointMessage(header, body);
 	
-					/* POLYDATA */	
-				//TODO: Implement PolyDataMessage	
-	//						if ( dataType.equals(PolyDataMessage.DATA_TYPE) )
-	//							return new PolyDataMessage(header, body);
-				//TODO: Implement GetPolyDataMessage
-	//						if ( dataType.equals(GetPolyDataMessage.DATA_TYPE) )
-	//							return new GetPolyDataMessage(header, body);
-				//TODO: Implement STT_PolyDataMessage
-	//						if ( dataType.equals(STTPolyDataMessage.DATA_TYPE) )
-	//							return new STTPolyDataMessage(header, body);
-				//TODO: Implement STP_PolyDataMessage
-	//						if ( dataType.equals(STPPolyDataMessage.DATA_TYPE) )
-	//							return new STPPolyDataMessage(header, body);
-				//TODO: Implement RTS_PolyDataMessage
-	//						if ( dataType.equals(RTSPolyDataMessage.DATA_TYPE) )
-	//							return new RTSPolyDataMessage(header, body);	
+				/* POLYDATA
+				TODO: Implement PolyDataMessage	
+							if ( dataType.equals(PolyDataMessage.DATA_TYPE) )
+								return new PolyDataMessage(header, body);
+				TODO: Implement GetPolyDataMessage
+							if ( dataType.equals(GetPolyDataMessage.DATA_TYPE) )
+								return new GetPolyDataMessage(header, body);
+				TODO: Implement STT_PolyDataMessage
+							if ( dataType.equals(STTPolyDataMessage.DATA_TYPE) )
+								return new STTPolyDataMessage(header, body);
+				TODO: Implement STP_PolyDataMessage
+							if ( dataType.equals(STPPolyDataMessage.DATA_TYPE) )
+								return new STPPolyDataMessage(header, body);
+				TODO: Implement RTS_PolyDataMessage
+							if ( dataType.equals(RTSPolyDataMessage.DATA_TYPE) )
+								return new RTSPolyDataMessage(header, body);	
+				*/
 	
 				/* QuaternionTrackingData */		
 				if ( dataType.equals(QuaternionTrackingDataMessage.DATA_TYPE) )

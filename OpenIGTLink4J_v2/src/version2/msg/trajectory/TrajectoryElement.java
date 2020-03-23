@@ -193,7 +193,7 @@ public class TrajectoryElement extends AbstractElement{
 	
 	    bytesArray.putByte(this.getType());
 	    
-	    //put reserved byte
+	    /*put reserved byte */
 	    bytesArray.putByte((byte) 0x00);
 	    
 	    bytesArray.putBytes(this.getRGBA());
@@ -232,7 +232,7 @@ public class TrajectoryElement extends AbstractElement{
 	    retVal.setGroupName(bytesArray.getString(IGTL_LEN_GROUP_NAME));
 	    retVal.setType(bytesArray.getBytes(1)[0]);
 	    
-	    // remove reserved byte
+	    /* remove reserved byte */
 	    bytesArray.getBytes(1);
 	    
 	    retVal.setRGBA(bytesArray.getBytes(4));
