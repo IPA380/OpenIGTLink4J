@@ -71,7 +71,6 @@ public enum MIBenum {
 	 */
 	public String decode(byte[] values) throws UnsupportedEncodingException {
 		return new String(values, this.code);
-	//		return new String(values, "US-ASCII");
 	}
 
 	/**
@@ -92,7 +91,6 @@ public enum MIBenum {
 			BytesArray bytesArray = new BytesArray();
 			bytesArray.putBytes(values);
 			return bytesArray.getString(values.length);
-	//			return new String(values, "US_ASCII");
 		default:
 			throw new UnsupportedEncodingException();
 		}

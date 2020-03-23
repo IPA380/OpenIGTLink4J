@@ -51,7 +51,6 @@ public class QueryMechanismTest {
 	public static void setUpBeforeClass() throws Exception {		
 		serverMessageHandler = new TestMessageHandler();
 		server = new Server(SERVER_PORT, serverMessageHandler);
-//		server.start();
 	}
 
 	@AfterClass
@@ -223,50 +222,44 @@ public class QueryMechanismTest {
 		assertTrue("Testing reply reception after sending " + message.getClass(), 
 				receivedMessages.lastElement().getDeviceName().equals(deviceName));
 	}
+	
+	 /* 
+	  * @Test public void testNDArray() throws UnknownHostException, IOException {
+	 * String deviceName = "TEST_NDARRAY"; OIGTL_GetMessage message = new
+	 * GetNDArrayMessage(deviceName);
+	 * 
+	 * Vector<OpenIGTMessage> receivedMessages =
+	 * clientMessageHandler.getReceivedMessages(); receivedMessages.clear();
+	 * client.send(message); try { Thread.sleep(100); } catch (InterruptedException
+	 * e) {} assertTrue("Testing reply reception after sending " +
+	 * message.getClass(),
+	 * receivedMessages.lastElement().getDeviceName().equals(deviceName)); }
+	 */
 
-//	@Test
-//	public void testNDArray() throws UnknownHostException, IOException {
-//		String deviceName = "TEST_NDARRAY";
-//		OIGTL_GetMessage message = new GetNDArrayMessage(deviceName);
-//		
-//		Vector<OpenIGTMessage> receivedMessages = clientMessageHandler.getReceivedMessages();
-//		receivedMessages.clear();
-//		client.send(message);
-//		try {
-//			Thread.sleep(100);
-//		} catch (InterruptedException e) {}
-//		assertTrue("Testing reply reception after sending " + message.getClass(), 
-//				receivedMessages.lastElement().getDeviceName().equals(deviceName));
-//	}
+	/*
+	 * @Test public void testImageMeta() throws UnknownHostException, IOException {
+	 * String deviceName = "TEST_IMAGE_META"; OIGTL_GetMessage message = new
+	 * GetImageMetaMNessage(deviceName);
+	 * 
+	 * Vector<OpenIGTMessage> receivedMessages =
+	 * clientMessageHandler.getReceivedMessages(); receivedMessages.clear();
+	 * client.send(message); try { Thread.sleep(100); } catch (InterruptedException
+	 * e) {} assertTrue("Testing reply reception after sending " +
+	 * message.getClass(),
+	 * receivedMessages.lastElement().getDeviceName().equals(deviceName)); }
+	 */
 
-//	@Test
-//	public void testImageMeta() throws UnknownHostException, IOException {
-//		String deviceName = "TEST_IMAGE_META";
-//		OIGTL_GetMessage message = new GetImageMetaMNessage(deviceName);
-//		
-//		Vector<OpenIGTMessage> receivedMessages = clientMessageHandler.getReceivedMessages();
-//		receivedMessages.clear();
-//		client.send(message);
-//		try {
-//			Thread.sleep(100);
-//		} catch (InterruptedException e) {}
-//		assertTrue("Testing reply reception after sending " + message.getClass(), 
-//				receivedMessages.lastElement().getDeviceName().equals(deviceName));
-//	}
-
-//	@Test
-//	public void testLB_Meta() throws UnknownHostException, IOException {
-//		String deviceName = "TEST_LB_Meta";
-//		OIGTL_GetMessage message = new GetLBMeta(deviceName);
-//		
-//		Vector<OpenIGTMessage> receivedMessages = clientMessageHandler.getReceivedMessages();
-//		receivedMessages.clear();
-//		client.send(message);
-//		try {
-//			Thread.sleep(100);
-//		} catch (InterruptedException e) {}
-//		assertTrue("Testing reply reception after sending " + message.getClass(), 
-//				receivedMessages.lastElement().getDeviceName().equals(deviceName));
-//	}
+	/*
+	 * @Test public void testLB_Meta() throws UnknownHostException, IOException {
+	 * String deviceName = "TEST_LB_Meta"; OIGTL_GetMessage message = new
+	 * GetLBMeta(deviceName);
+	 * 
+	 * Vector<OpenIGTMessage> receivedMessages =
+	 * clientMessageHandler.getReceivedMessages(); receivedMessages.clear();
+	 * client.send(message); try { Thread.sleep(100); } catch (InterruptedException
+	 * e) {} assertTrue("Testing reply reception after sending " +
+	 * message.getClass(),
+	 * receivedMessages.lastElement().getDeviceName().equals(deviceName)); }
+	 */
 
 }

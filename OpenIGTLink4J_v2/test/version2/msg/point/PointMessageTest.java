@@ -159,11 +159,9 @@ public class PointMessageTest {
     @Test
     public void testMuliplePoints() throws UnknownHostException, IOException, InterruptedException {
     	Server server = new Server(30010, new TestMessageHandler());
-//		server.start();
 		TimeUnit.SECONDS.sleep(2);
 		TestMessageHandler clientMessageHandler = new TestMessageHandler(false);
     	new Client("127.0.0.1", 30010, clientMessageHandler, false);	
-//    	client.start(false);
     	PointMessage testMessage;
 		Scanner s = new Scanner(System.in);
     	for(int i = 1; i<=1000; i=i+100) {
@@ -194,9 +192,6 @@ public class PointMessageTest {
     			log.info("No message received");
     			fail("No message received for " + i + " points.");
     		}
-//    		System.out.println("Has the PointMessage been received correctly? If yes, please enter y");
-//    		String answer= s.next();
-//    		assertTrue("Has the PointMessage been received?", answer.equalsIgnoreCase("y"));
     	}
     	s.close();
     }

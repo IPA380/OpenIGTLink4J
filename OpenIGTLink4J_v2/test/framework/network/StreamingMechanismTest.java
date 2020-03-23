@@ -53,7 +53,6 @@ public class StreamingMechanismTest {
 	public static void setUpBeforeClass() throws Exception {		
 		serverMessageHandler = new TestMessageHandler();
 		server = new Server(SERVER_PORT, serverMessageHandler);
-//		server.start();
 	}
 
 	@AfterClass
@@ -80,30 +79,19 @@ public class StreamingMechanismTest {
 		} catch (InterruptedException e) {e.printStackTrace();}
 	}
 
-//	@Test
-//	public void testTransfrom() throws UnknownHostException, IOException {
-//		int minResponseTime = Integer.MAX_VALUE;
-//		Vector<OpenIGTMessage> receivedMessages = clientMessageHandler.getReceivedMessages();
-//		int i = 1;
-//		for (i = 1; i < 20000; i += 1) {
-//			receivedMessages.clear();
-//			client.send(new GetTransformMessage("TEST"));
-//			try {
-//				Thread.sleep(i);
-//			} catch (InterruptedException e) {}
-//			if (!receivedMessages.isEmpty() &&
-//					receivedMessages.lastElement().getDeviceName().equals("TEST")){
-//				minResponseTime = i;
-//				Log.info("Fastest reply to GET_TRANS after " + i + " ms");
-//				break;
-//			}
-//			try {
-//				Thread.sleep(100);
-//			} catch (InterruptedException e) {}
-//		}
-//		assertTrue("Testing reply reception after " + i + " ms", 
-//				minResponseTime <= i);
-//	}
+	/*
+	 * @Test public void testTransfrom() throws UnknownHostException, IOException {
+	 * int minResponseTime = Integer.MAX_VALUE; Vector<OpenIGTMessage>
+	 * receivedMessages = clientMessageHandler.getReceivedMessages(); int i = 1; for
+	 * (i = 1; i < 20000; i += 1) { receivedMessages.clear(); client.send(new
+	 * GetTransformMessage("TEST")); try { Thread.sleep(i); } catch
+	 * (InterruptedException e) {} if (!receivedMessages.isEmpty() &&
+	 * receivedMessages.lastElement().getDeviceName().equals("TEST")){
+	 * minResponseTime = i; Log.info("Fastest reply to GET_TRANS after " + i +
+	 * " ms"); break; } try { Thread.sleep(100); } catch (InterruptedException e) {}
+	 * } assertTrue("Testing reply reception after " + i + " ms", minResponseTime <=
+	 * i); }
+	 */
 
 	@Test
 	public void testImage() throws UnknownHostException, IOException {
@@ -193,25 +181,26 @@ public class StreamingMechanismTest {
 				receivedMessages.lastElement().getDeviceName().equals(msgStop.getDeviceName()));
 	}
 
-//	@Test
-//	public void testNDArray() throws UnknownHostException, IOException {
-//		String deviceName = "_NDArray";
-//		OIGTL_STTMessage msgStart = new STTNDArrayMessage("START" + deviceName);
-//		OIGTL_STPMessage msgStop = new STPNDArrayMessage("STOP" + deviceName);
-//		
-//		Vector<OpenIGTMessage> receivedMessages = clientMessageHandler.getReceivedMessages();
-//		receivedMessages.clear();
-//		client.send(msgStart);
-//		try {Thread.sleep(100);	} catch (InterruptedException e) {}
-//		client.send(msgStop);
-//		try {Thread.sleep(100);	} catch (InterruptedException e) {}
-//		assertTrue("Testing reply reception after sending " + msgStart.getClass(), 
-//				receivedMessages.firstElement() instanceof RTSNDArrayMessage);
-//		assertTrue("Testing reply reception after sending " + msgStart.getClass(), 
-//				receivedMessages.firstElement().getDeviceName().equals(msgStart.getDeviceName()));
-//		assertTrue("Testing reply reception after sending " + msgStop.getClass(), 
-//				receivedMessages.lastElement() instanceof RTSNDArrayMessage);
-//		assertTrue("Testing reply reception after sending " + msgStop.getClass(), 
-//				receivedMessages.lastElement().getDeviceName().equals(msgStop.getDeviceName()));
-//	}
+	/*
+	 * @Test public void testNDArray() throws UnknownHostException, IOException {
+	 * String deviceName = "_NDArray"; OIGTL_STTMessage msgStart = new
+	 * STTNDArrayMessage("START" + deviceName); OIGTL_STPMessage msgStop = new
+	 * STPNDArrayMessage("STOP" + deviceName);
+	 * 
+	 * Vector<OpenIGTMessage> receivedMessages =
+	 * clientMessageHandler.getReceivedMessages(); receivedMessages.clear();
+	 * client.send(msgStart); try {Thread.sleep(100); } catch (InterruptedException
+	 * e) {} client.send(msgStop); try {Thread.sleep(100); } catch
+	 * (InterruptedException e) {}
+	 * assertTrue("Testing reply reception after sending " + msgStart.getClass(),
+	 * receivedMessages.firstElement() instanceof RTSNDArrayMessage);
+	 * assertTrue("Testing reply reception after sending " + msgStart.getClass(),
+	 * receivedMessages.firstElement().getDeviceName().equals(msgStart.getDeviceName
+	 * ())); assertTrue("Testing reply reception after sending " +
+	 * msgStop.getClass(), receivedMessages.lastElement() instanceof
+	 * RTSNDArrayMessage); assertTrue("Testing reply reception after sending " +
+	 * msgStop.getClass(),
+	 * receivedMessages.lastElement().getDeviceName().equals(msgStop.getDeviceName()
+	 * )); }
+	 */
 }

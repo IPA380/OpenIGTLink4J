@@ -49,7 +49,6 @@ public class MetaData {
 			metaHeaders[i] = new MetaHeader(keySize, valueEncoding, valueSize);
 		} 
 		
-//		metaData = new HashMap<String, String>(indexCount);
 		keys = new ArrayList<String>(indexCount);
 		values = new ArrayList<String>(indexCount);
 		
@@ -73,7 +72,6 @@ public class MetaData {
      * Constructor to be used to create metadate to getBytes to send them
      **/
 	public MetaData(){
-//		metaData = new HashMap<String, String>();
 		keys = new ArrayList<String>();
 		values = new ArrayList<String>();
 	}
@@ -86,7 +84,6 @@ public class MetaData {
 	 * @param value
 	 */
 	public void addKeyValuePair(String key, String value){
-//		metaData.put(key, value);
 		keys.add(key);
 		values.add(value);
 	}

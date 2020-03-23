@@ -17,10 +17,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-//import msg.command.CommandMessageTest;
-//import msg.capability.CapabilityMessageTest;
 import msg.point.PointMessageTest;
-//import msg.position.PositionMessage;
 import msg.sensor.SensorMessageTest;
 import msg.string.StringMessageTest;
 import msg.tdata.TrackingDataMessageTest;
