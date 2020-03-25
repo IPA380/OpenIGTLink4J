@@ -25,6 +25,7 @@ import org.junit.Test;
 
 import msg.trajectory.TrajectoryMessage;
 import util.Header;
+import util.MetaData;
 
 /**
  * @author Andreas Rothfuss

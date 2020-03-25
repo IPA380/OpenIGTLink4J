@@ -66,6 +66,25 @@ import util.Header;
  *
  */
 public class MessageParser {
+	
+	public final boolean ignoreInvalidMessages;
+	
+	@Deprecated
+	public MessageParser() {
+		this(false);
+	}
+	
+	public MessageParser(boolean ignoreInvalidMessages) {
+		this.ignoreInvalidMessages = ignoreInvalidMessages;
+	}
+
+	public OpenIGTMessage modifyBeforeSend(OpenIGTMessage message){
+		return message;
+	}
+
+	public boolean testReceivedMessageValidity(OpenIGTMessage message) {
+		return true;
+	}
 
 	/**
 	 * Method to parse a {@link Header} and the message body bytes 

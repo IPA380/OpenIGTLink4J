@@ -13,10 +13,10 @@ package network.forward;
 
 import java.io.IOException;
 
-import network.AbstractMessageRunner;
 import network.NetManager;
+import network.NetManagerRunner;
 
-public class ForwardMessageRunner extends AbstractMessageRunner{
+public class ForwardMessageRunner extends NetManagerRunner{
 
 	public ForwardMessageRunner(NetManager netManager) {
 		super("ForwardMessageRunner", netManager);

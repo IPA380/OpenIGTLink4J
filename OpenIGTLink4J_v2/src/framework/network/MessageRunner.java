@@ -36,7 +36,7 @@ import util.RTSMessageStatus;
  * @author Andreas Rothfuss
  *
  */
-public class MessageRunner extends AbstractMessageRunner {
+public class MessageRunner extends NetManagerRunner {
 
 	/**
 	 * Destination constructor to create a new {@link MessageRunner}
@@ -57,41 +57,50 @@ public class MessageRunner extends AbstractMessageRunner {
 				
 				/* get the message */
 				RawOpenIGTMessage rawMsg = netManager.pollReceiveQueue();
-				OpenIGTMessage message = messageParser.parse(
+				OpenIGTMessage message = NetManager.messageParser.parse(
 						new Header(rawMsg.headerBytes), rawMsg.body);
-				
 				if (message == null) {
 					log.warn("Message couldn't be parsed!");
 				}
+					
+				
 				else {		
-				/* call the appropriate method for the messages type for every message handler */
-					for (IOpenIGTLinkMessageListener listener : netManager.getListeners()) {
-						try {
-							switch (OIGTLMessageType.from(message)) {
-							case GET:
-								if (message instanceof GetCapabilityMessage) {
-									handleCapabilityQuery((GetCapabilityMessage)message, listener);
+					/* check if the message is valid or the message parser is set to 
+					 * ignore invalid messages */
+					if (NetManager.messageParser.testReceivedMessageValidity(message) || 
+							!NetManager.messageParser.ignoreInvalidMessages) {
+						/* call the appropriate method for the messages type for every message handler */
+						for (IOpenIGTLinkMessageListener listener : netManager.getListeners()) {
+							try {
+								switch (OIGTLMessageType.from(message)) {
+								case GET:
+									if (message instanceof GetCapabilityMessage) {
+										handleCapabilityQuery((GetCapabilityMessage)message, listener);
+									}
+									else {
+										handleQuery((OIGTL_GetMessage)message, listener);
+									}
+									break;
+								case STT:
+									handleSTTMessage((OIGTL_STTMessage) message, listener);
+									break;
+								case STP:
+									handleSTPMessage((OIGTL_STPMessage) message, listener);
+									break;
+								case RTS:
+									listener.rtsMesssageReceived((OIGTL_RTSMessage) message, netManager);
+									break;
+								default:
+									listener.messageReceived(message);
+									break;
 								}
-								else {
-									handleQuery((OIGTL_GetMessage)message, listener);
-								}
-								break;
-							case STT:
-								handleSTTMessage((OIGTL_STTMessage) message, listener);
-								break;
-							case STP:
-								handleSTPMessage((OIGTL_STPMessage) message, listener);
-								break;
-							case RTS:
-								listener.rtsMesssageReceived((OIGTL_RTSMessage) message, netManager);
-								break;
-							default:
-								listener.messageReceived(message);
-								break;
+							} catch (IOException e) {
+								netManager.report(e);
 							}
-						} catch (IOException e) {
-							netManager.report(e);
 						}
+					}
+					else {
+						log.warn("Message has been ignored due to invalidity." +  message.toString());
 					}
 				}
 			}

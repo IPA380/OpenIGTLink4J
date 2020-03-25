@@ -27,6 +27,7 @@ import msg.OpenIGTMessage;
 import msg.RawOpenIGTMessage;
 import protocol.IOpenIGTLinkMessageListener;
 import protocol.MessageHandler;
+import protocol.MessageParser;
 
 /**
  * Class managing the components needed to implement the 
@@ -37,6 +38,9 @@ import protocol.MessageHandler;
  */
 public class NetManager implements IOpenIGTMessageSender{
 
+	/** The {@link MessageParser} */
+	public static MessageParser messageParser;
+
 	/** The {@link ExecutorService} to execute the different runners */
 	protected ExecutorService threadPool;	
 	/** The {@link Runnable} to handle incoming of messages */
@@ -44,7 +48,7 @@ public class NetManager implements IOpenIGTMessageSender{
 	/** The {@link Runnable} to handle outgiong of messages */
 	protected SendRunner sendRunner;
 	/** The {@link Runnable} to handle the protocol for messages */
-	protected AbstractMessageRunner messageRunner;
+	protected NetManagerRunner messageRunner;
 	/** The Socket handling the network connection */
 	protected NetManagerRunner socketRunner;
 	/** The Socket handling the network connection */
@@ -72,6 +76,10 @@ public class NetManager implements IOpenIGTMessageSender{
 	 */
 	public NetManager(Socket socket, OpenITGNode node, IOpenIGTNetworkNode networkNode){
 		log = LoggerFactory.getLogger(this.getClass());
+		
+		if (messageParser == null){
+			messageParser = new MessageParser(false);
+		}
 		
 		this.socket = socket;
 		this.node = node;
@@ -234,6 +242,9 @@ public class NetManager implements IOpenIGTMessageSender{
 	@Override
 	public void send(OpenIGTMessage msg) throws IOException {
 		log.trace("Sending message: " + msg.toString(), Byte.MAX_VALUE);
+		
+		messageParser.modifyBeforeSend(msg);
+		
 		byte[] msgBytes = msg.getBytes();
 		send(msgBytes);
 	}
