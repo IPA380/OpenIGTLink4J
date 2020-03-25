@@ -57,7 +57,7 @@ public class MessageRunner extends NetManagerRunner {
 				
 				/* get the message */
 				RawOpenIGTMessage rawMsg = netManager.pollReceiveQueue();
-				OpenIGTMessage message = NetManager.messageParser.parse(
+				OpenIGTMessage message = netManager.messageParser.parse(
 						new Header(rawMsg.headerBytes), rawMsg.body);
 				if (message == null) {
 					log.warn("Message couldn't be parsed!");
@@ -67,8 +67,8 @@ public class MessageRunner extends NetManagerRunner {
 				else {		
 					/* check if the message is valid or the message parser is set to 
 					 * ignore invalid messages */
-					if (NetManager.messageParser.testReceivedMessageValidity(message) || 
-							!NetManager.messageParser.ignoreInvalidMessages) {
+					if (netManager.messageParser.testReceivedMessageValidity(message) || 
+							!netManager.messageParser.ignoreInvalidMessages) {
 						/* call the appropriate method for the messages type for every message handler */
 						for (IOpenIGTLinkMessageListener listener : netManager.getListeners()) {
 							try {

@@ -19,6 +19,7 @@ import network.stream.ServerThread;
 
 import msg.OpenIGTMessage;
 import protocol.MessageHandler;
+import protocol.MessageParser;
 
 /**
  *** This class represents a server that implements an
@@ -28,6 +29,9 @@ import protocol.MessageHandler;
  * 
  */
 public class Server extends OpenITGNode{
+
+	/** The {@link MessageParser} */
+	public final MessageParser messageParser;
 
 	/** The {@link ServerThread} */
 	protected ServerThread serverThread;
@@ -44,8 +48,10 @@ public class Server extends OpenITGNode{
      * @param maxNumClients
      * 		maximum number of clients allowed to conntect to the server
      **/
-	public Server(int serverPort, MessageHandler messageHandler, int maxNumClients) {
+	public Server(int serverPort, MessageHandler messageHandler, int maxNumClients, 
+			MessageParser messageParser) {
 		super(messageHandler);	
+		this.messageParser = messageParser;
 		this.start(serverPort, maxNumClients);
 		try {
 			Thread.sleep(500);
@@ -61,12 +67,14 @@ public class Server extends OpenITGNode{
      * @param messageHandler
      * 		the message handler that will be called to handle new messages
      **/
-	public Server(int serverPort, MessageHandler messageHandler) {
-		this(serverPort, messageHandler, 256);
+	public Server(int serverPort, MessageHandler messageHandler, 
+			MessageParser messageParser) {
+		this(serverPort, messageHandler, 256, messageParser);
 	}
 
 	protected void initServerThread(int serverPort, int maxNumClients) {
-		serverThread = new ServerThread(this, serverPort, maxNumClients);
+		serverThread = new ServerThread(this, serverPort, maxNumClients, 
+				messageParser);
 	}
 
 	/**

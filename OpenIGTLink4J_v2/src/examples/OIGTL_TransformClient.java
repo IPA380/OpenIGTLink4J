@@ -5,6 +5,7 @@ import msg.OpenIGTMessage;
 import msg.transform.GetTransformMessage;
 import msg.transform.TransformMessage;
 import network.OpenIGTLinkClient;
+import protocol.MessageParser;
 
 /**
  * Example class to illustrate the use of {@link OpenIGTLinkClient} 
@@ -27,8 +28,9 @@ public class OIGTL_TransformClient extends OpenIGTLinkClient{
 	 * @param port
 	 * 		port, the client will try to connect to
 	 */
-	public OIGTL_TransformClient(String ipAdress, int port) {
-		super(ipAdress, port);
+	public OIGTL_TransformClient(String ipAdress, int port, 
+			MessageParser messageParser) {
+		super(ipAdress, port, messageParser);
 	}
 	
 	@Override

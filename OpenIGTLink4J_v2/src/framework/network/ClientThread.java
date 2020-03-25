@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import msg.OpenIGTMessage;
+import protocol.MessageParser;
 
 /**
  *** This class represents an automatically reconnecting client
@@ -23,6 +24,9 @@ import msg.OpenIGTMessage;
  * 
  */
 public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSender, IOpenIGTNetworkNode{
+
+	/** The {@link MessageParser} */
+	public final MessageParser messageParser;
 
 	/** the ip the {@link ClientThread} will connect to */
 	protected String ip;
@@ -44,12 +48,14 @@ public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSen
      * @param port
      * 		the port the {@link ClientThread} will connect to
      */
-	public ClientThread(OpenITGNode client, String ip, int port, boolean connectionRetry) {
+	public ClientThread(OpenITGNode client, String ip, int port, boolean connectionRetry, 
+			MessageParser messageParser) {
 		super("ClientThread");
 		this.client = client;		
 		this.ip = ip;
 		this.port = port;
 		this.connectionRetry = connectionRetry;
+		this.messageParser = messageParser;
 	}
 
 	@Override
@@ -58,7 +64,7 @@ public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 		if (netManager == null) {
 			/* connect to the server */
 			try {
-				netManager = new NetManager(new Socket(ip, port), client, this);
+				netManager = new NetManager(new Socket(ip, port), client, this, messageParser);
 			} catch (IOException e) {}
 		}
 		else {

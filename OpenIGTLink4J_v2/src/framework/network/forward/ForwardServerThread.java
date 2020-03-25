@@ -20,6 +20,7 @@ import java.util.Iterator;
 import network.NetManager;
 import network.OpenITGNode;
 import network.stream.ServerThread;
+import protocol.MessageParser;
 
 public class ForwardServerThread extends ServerThread {
 
@@ -27,8 +28,8 @@ public class ForwardServerThread extends ServerThread {
 	private int forwardPort;
 
 	public ForwardServerThread(OpenITGNode server, int port, int maxNumClients, 
-			String forwardIP, int forwardPort) {
-		super(server, port, maxNumClients);
+			String forwardIP, int forwardPort, MessageParser messageParser) {
+		super(server, port, maxNumClients, messageParser);
 		this.forwardIP = forwardIP;
 		this.forwardPort = forwardPort;
 	}
@@ -52,9 +53,9 @@ public class ForwardServerThread extends ServerThread {
 			Socket additionalSocket) {
 		return new NetManager[] {
 				new ForwardManager(clientSocket,
-						additionalSocket, server, this),
+						additionalSocket, server, this, messageParser),
 				new ForwardManager(additionalSocket, 
-						clientSocket, server, this)};
+						clientSocket, server, this, messageParser)};
 	}
 	
 	@Override

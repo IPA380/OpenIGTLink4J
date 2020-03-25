@@ -158,10 +158,10 @@ public class PointMessageTest {
     
     @Test
     public void testMuliplePoints() throws UnknownHostException, IOException, InterruptedException {
-    	Server server = new Server(30010, new TestMessageHandler());
+    	Server server = new Server(30010, new TestMessageHandler(), null);
 		TimeUnit.SECONDS.sleep(2);
 		TestMessageHandler clientMessageHandler = new TestMessageHandler(false);
-    	new Client("127.0.0.1", 30010, clientMessageHandler, false);	
+    	new Client("127.0.0.1", 30010, clientMessageHandler, false, null);	
     	PointMessage testMessage;
 		Scanner s = new Scanner(System.in);
     	for(int i = 1; i<=1000; i=i+100) {

@@ -42,7 +42,7 @@ public class TestServer {
 	public void setUp() throws Exception {
 		serverMessageHandler = new TestMessageHandler();
 		clientMessageHandler = new TestMessageHandler();
-		server = new Server(30010, serverMessageHandler);
+		server = new Server(30010, serverMessageHandler, null);
 	}
 
 	@After
@@ -51,7 +51,7 @@ public class TestServer {
 
 	@Test
 	public void test() throws UnknownHostException, IOException {
-		client = new Client("127.0.0.1", 30010, clientMessageHandler, true);
+		client = new Client("127.0.0.1", 30010, clientMessageHandler, true, null);
 		sleep(1000);
 		
 		try {

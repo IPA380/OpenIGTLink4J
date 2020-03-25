@@ -16,6 +16,7 @@ import java.net.UnknownHostException;
 
 import msg.OpenIGTMessage;
 import protocol.MessageHandler;
+import protocol.MessageParser;
 
 /**
  * Class implementing an abstract client for an OpenIGTLink node
@@ -25,6 +26,9 @@ import protocol.MessageHandler;
  */
 public abstract class OpenIGTLinkClient extends MessageHandler 
 	implements IOpenIGTMessageSender, IContainsNetworkedRunnabel {
+
+	/** The {@link MessageParser} */
+	public final MessageParser messageParser;
 	
 	/** The {@link Client} */
 	Client client;
@@ -41,9 +45,11 @@ public abstract class OpenIGTLinkClient extends MessageHandler
 	 * @param port
 	 * 		port, the client will try to connect to
 	 */
-	public OpenIGTLinkClient(String ipAdress, int port) {
+	public OpenIGTLinkClient(String ipAdress, int port, 
+			MessageParser messageParser) {
 		this.ipAdress = ipAdress;
 		this.port = port;
+		this.messageParser = messageParser;
 	}
 
 	/**
@@ -55,7 +61,7 @@ public abstract class OpenIGTLinkClient extends MessageHandler
 	 * 		if an I/O error occurs when creating the socket
 	 **/
 	public void start() throws UnknownHostException, IOException {
-		client = new Client(ipAdress, port, this, true);
+		client = new Client(ipAdress, port, this, true, messageParser);
 	}
 
 	/**
@@ -70,7 +76,8 @@ public abstract class OpenIGTLinkClient extends MessageHandler
 	 * 		if an I/O error occurs when creating the socket
 	 **/
 	public void start(boolean automaticConnectionRetry) throws UnknownHostException, IOException {
-		client = new Client(ipAdress, port, this, automaticConnectionRetry);
+		client = new Client(ipAdress, port, this, automaticConnectionRetry, 
+				messageParser);
 	}
 
 	/**

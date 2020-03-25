@@ -4,6 +4,7 @@ import msg.OIGTL_GetMessage;
 import msg.transform.GetTransformMessage;
 import msg.transform.TransformMessage;
 import network.OpenIGTLinkServer;
+import protocol.MessageParser;
 
 /**
  * Example class to illustrate the use of {@link OpenIGTLinkServer} 
@@ -22,7 +23,7 @@ public class OIGTL_TransfromServer extends OpenIGTLinkServer {
 	 * 		port, the server will be listening to
 	 */
 	public OIGTL_TransfromServer(int port) {
-		super(port);
+		super(port, new MessageParser(false));
 	}
 
 	@Override

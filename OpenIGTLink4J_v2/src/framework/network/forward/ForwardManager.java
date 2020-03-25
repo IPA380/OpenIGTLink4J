@@ -19,6 +19,7 @@ import network.IOpenIGTNetworkNode;
 import network.NetManager;
 import network.OpenITGNode;
 import protocol.MessageHandler;
+import protocol.MessageParser;
 
 /**
  * Class managing the components needed to implement the 
@@ -42,8 +43,9 @@ public class ForwardManager extends NetManager{
 	 * 		the network node
 	 */
 	public ForwardManager(Socket socket, Socket socket1, 
-			OpenITGNode node, IOpenIGTNetworkNode networkNode){
-		super(socket, node, networkNode);
+			OpenITGNode node, IOpenIGTNetworkNode networkNode, 
+			MessageParser messageParser){
+		super(socket, node, networkNode, messageParser);
 		this.socket1 = socket1;	
 	}
 	

@@ -47,9 +47,10 @@ public class ClientTest {
 	public void setUp() throws Exception {
 		log = LoggerFactory.getLogger(this.getClass());
 		serverMessageHandler = new TestMessageHandler();
-		server = new Server(SERVER_PORT, serverMessageHandler);
+		server = new Server(SERVER_PORT, serverMessageHandler, null);
 		clientMessageHandler = new TestMessageHandler();
-		client = new Client("127.0.0.1", SERVER_PORT, clientMessageHandler, true);
+		client = new Client("127.0.0.1", SERVER_PORT, clientMessageHandler, 
+				true, null);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {e.printStackTrace();}
@@ -80,7 +81,7 @@ public class ClientTest {
 		
 		assertFalse(client.isConnected());
 		
-		server = new Server(SERVER_PORT, serverMessageHandler);
+		server = new Server(SERVER_PORT, serverMessageHandler, null);
 	
 		try {
 			Thread.sleep(3000);

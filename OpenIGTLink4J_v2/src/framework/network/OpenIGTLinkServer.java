@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import msg.OpenIGTMessage;
 import protocol.MessageHandler;
+import protocol.MessageParser;
 
 public abstract class OpenIGTLinkServer extends MessageHandler
 		implements IOpenIGTMessageSender, IContainsNetworkedRunnabel {
@@ -32,10 +33,10 @@ public abstract class OpenIGTLinkServer extends MessageHandler
 	 * @param port
 	 *            port, the server will be listening to
 	 */
-	public OpenIGTLinkServer(int port) {
+	public OpenIGTLinkServer(int port, MessageParser messageParser) {
 		this.port = port;
 		log = LoggerFactory.getLogger(this.getClass());
-		server = new Server(port, this);
+		server = new Server(port, this, messageParser);
 	}
 	
 	/**
@@ -46,10 +47,10 @@ public abstract class OpenIGTLinkServer extends MessageHandler
      * @param maxNumClients
      * 		maximum number of clients allowed to conntect to the server
 	 */
-	public OpenIGTLinkServer(int port, int maxNumClients) {
+	public OpenIGTLinkServer(int port, int maxNumClients, MessageParser messageParser) {
 		this.port = port;
 		log = LoggerFactory.getLogger(this.getClass());
-		server = new Server(port, this, maxNumClients);
+		server = new Server(port, this, maxNumClients, messageParser);
 	}
 
 	/**

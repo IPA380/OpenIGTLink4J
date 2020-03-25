@@ -25,7 +25,7 @@ import network.IOpenIGTNetworkNode;
 import network.MyLoopedRunnable;
 import network.NetManager;
 import network.OpenITGNode;
-
+import protocol.MessageParser;
 import msg.OpenIGTMessage;
 
 /**
@@ -35,6 +35,9 @@ import msg.OpenIGTMessage;
  * 
  */
 public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSender, IOpenIGTNetworkNode{
+
+	/** The {@link MessageParser} */
+	public final MessageParser messageParser;
 
 	/** the port the {@link ServerThread} will listen to */
 	protected int serverPort;
@@ -59,11 +62,13 @@ public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSen
      * @param port
      * 		the port the {@link ClientThread} will connect to
      */
-	public ServerThread(OpenITGNode server, int port, int maxNumClients){
+	public ServerThread(OpenITGNode server, int port, int maxNumClients, 
+			MessageParser messageParser){
 		super("ServerThread");
 		this.server = server;
 	    this.serverPort = port;
 	    this.maxNumClients = maxNumClients;
+	    this.messageParser = messageParser;
 	    
 	    netManagers = new ConcurrentLinkedQueue<NetManager>();
 
@@ -118,7 +123,7 @@ public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 
 	protected NetManager[] createNewNetManager(Socket clientSocket, 
 			Socket additionalSocket) {
-		return new NetManager[] {new NetManager(clientSocket, server, this)};
+		return new NetManager[] {new NetManager(clientSocket, server, this, messageParser)};
 	}
 	
 	@Override

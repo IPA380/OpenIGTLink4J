@@ -39,7 +39,7 @@ import protocol.MessageParser;
 public class NetManager implements IOpenIGTMessageSender{
 
 	/** The {@link MessageParser} */
-	public static MessageParser messageParser;
+	public final MessageParser messageParser;
 
 	/** The {@link ExecutorService} to execute the different runners */
 	protected ExecutorService threadPool;	
@@ -74,11 +74,15 @@ public class NetManager implements IOpenIGTMessageSender{
 	 * @param networkNode
 	 * 		the network node
 	 */
-	public NetManager(Socket socket, OpenITGNode node, IOpenIGTNetworkNode networkNode){
+	public NetManager(Socket socket, OpenITGNode node, IOpenIGTNetworkNode networkNode, 
+			MessageParser messageParser){
 		log = LoggerFactory.getLogger(this.getClass());
 		
 		if (messageParser == null){
-			messageParser = new MessageParser(false);
+			this.messageParser = new MessageParser(false);
+		}
+		else {
+			this.messageParser = messageParser;
 		}
 		
 		this.socket = socket;

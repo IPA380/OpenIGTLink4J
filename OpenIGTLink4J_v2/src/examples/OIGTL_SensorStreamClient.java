@@ -9,6 +9,7 @@ import msg.sensor.SensorMessage;
 import network.IOpenIGTMessageSender;
 import network.stream.OpenIGTLinkStreamingClient;
 import network.stream.StreamRunner;
+import protocol.MessageParser;
 import util.RTSMessageStatus;
 
 /**
@@ -29,8 +30,9 @@ public class OIGTL_SensorStreamClient extends OpenIGTLinkStreamingClient{
 	 * @param port
 	 * 		port the client will try to connect to
 	 */
-	public OIGTL_SensorStreamClient(String ipAdress, int port) {
-		super(ipAdress, port);
+	public OIGTL_SensorStreamClient(String ipAdress, int port, 
+			MessageParser messageParser) {
+		super(ipAdress, port, messageParser);
 	}
 
 	@Override

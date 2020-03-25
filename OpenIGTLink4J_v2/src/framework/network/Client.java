@@ -19,6 +19,7 @@ import java.util.concurrent.Executors;
 
 import msg.OpenIGTMessage;
 import protocol.MessageHandler;
+import protocol.MessageParser;
 
 /**
  *** This class represents a client that implements an
@@ -47,9 +48,10 @@ public class Client extends OpenITGNode {
      * 		flag indicating whether the client will attempt an automatic
      * 		reconnect after a disconnect
      **/
-	public Client(String ip, int port, MessageHandler messageHandler, boolean automaticConnectionRetry) throws UnknownHostException, IOException {
+	public Client(String ip, int port, MessageHandler messageHandler, boolean automaticConnectionRetry, 
+			MessageParser messageParser) throws UnknownHostException, IOException {
 		super(messageHandler);
-		this.start(ip, port, automaticConnectionRetry);
+		this.start(ip, port, automaticConnectionRetry, messageParser);
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {}
@@ -66,9 +68,10 @@ public class Client extends OpenITGNode {
 	 * @throws IOException
 	 * 		if an I/O error occurs when creating the socket
 	 **/
-	protected void start(String ip, int port, boolean automaticConnectionRetry) throws UnknownHostException, IOException {
+	protected void start(String ip, int port, boolean automaticConnectionRetry, 
+			MessageParser messageParser) throws UnknownHostException, IOException {
 		if (clientThread == null) {
-			clientThread = new ClientThread(this, ip, port, automaticConnectionRetry);
+			clientThread = new ClientThread(this, ip, port, automaticConnectionRetry, messageParser);
 		}
 		if (!clientThread.isConnected()){
 			threadPool = Executors.newFixedThreadPool(1);

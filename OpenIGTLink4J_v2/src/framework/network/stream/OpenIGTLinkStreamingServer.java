@@ -24,6 +24,7 @@ import msg.sensor.RTSSensorMessage;
 import msg.sensor.STPSensorMessage;
 import network.IOpenIGTMessageSender;
 import network.OpenIGTLinkServer;
+import protocol.MessageParser;
 import util.RTSMessageStatus;
 import util.RunnableFutureCombo;
 
@@ -56,8 +57,8 @@ public abstract class OpenIGTLinkStreamingServer extends OpenIGTLinkServer {
 	 * @param port
 	 * 		port, the client will listen to
 	 */
-	public OpenIGTLinkStreamingServer(int port) {
-		this(port, DEFAULT_THREADPOOL_SIZE);
+	public OpenIGTLinkStreamingServer(int port, MessageParser messageParser) {
+		this(port, DEFAULT_THREADPOOL_SIZE, messageParser);
 	}
 
 	/**
@@ -69,8 +70,9 @@ public abstract class OpenIGTLinkStreamingServer extends OpenIGTLinkServer {
 	 * @param threadPoolSize
 	 * 		the desired size of the threadpool
 	 */
-	public OpenIGTLinkStreamingServer(int port, int threadPoolSize) {
-		super(port);
+	public OpenIGTLinkStreamingServer(int port, int threadPoolSize, 
+			MessageParser messageParser) {
+		super(port, messageParser);
 		this.threadPoolSize = threadPoolSize;
 		runnables = new LinkedList<RunnableFutureCombo>();
 	}
@@ -86,8 +88,9 @@ public abstract class OpenIGTLinkStreamingServer extends OpenIGTLinkServer {
      * @param messageHandler
      * 		the message handler that will be called to handle new messages
 	 */
-	public OpenIGTLinkStreamingServer(int port, int threadPoolSize, int maxNumClients) {
-		super(port, maxNumClients);
+	public OpenIGTLinkStreamingServer(int port, int threadPoolSize, int maxNumClients, 
+			MessageParser messageParser) {
+		super(port, maxNumClients, messageParser);
 		this.threadPoolSize = threadPoolSize;
 		runnables = new LinkedList<RunnableFutureCombo>();
 	}

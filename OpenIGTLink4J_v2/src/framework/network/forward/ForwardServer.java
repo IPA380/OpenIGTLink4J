@@ -13,6 +13,7 @@ package network.forward;
 
 import network.Server;
 import protocol.MessageHandler;
+import protocol.MessageParser;
 
 public class ForwardServer extends Server {
 
@@ -20,15 +21,15 @@ public class ForwardServer extends Server {
 	public final int forwardPort;
 
 	public ForwardServer(int serverPort, MessageHandler messageHandler, int maxNumClients, 
-			String forwardIP, int forwardPort) {
-		super(serverPort, messageHandler, maxNumClients);
+			String forwardIP, int forwardPort, MessageParser messageParser) {
+		super(serverPort, messageHandler, maxNumClients, messageParser);
 		this.forwardIP = forwardIP;
 		this.forwardPort = forwardPort;
 	}
 
 	protected void initServerThread(int serverPort, int maxNumClients) {
 		serverThread = new ForwardServerThread(this, serverPort, maxNumClients, 
-				forwardIP, forwardPort);
+				forwardIP, forwardPort, messageParser);
 	}
 
 }
