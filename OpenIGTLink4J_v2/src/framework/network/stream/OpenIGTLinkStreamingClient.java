@@ -61,6 +61,20 @@ public abstract class OpenIGTLinkStreamingClient extends OpenIGTLinkClient {
 	 * @param port
 	 * 		port, the client will try to connect to
 	 */
+	@Deprecated
+	public OpenIGTLinkStreamingClient(String ipAdress, int port) {
+		this(ipAdress, port, DEFAULT_THREADPOOL_SIZE, null);
+	}
+
+	/**
+	 * Destination constructor to create a new {@link OpenIGTLinkStreamingClient}
+	 * with a thread pool size defined by DEFAULT_THREADPOOL_SIZE
+	 * 
+	 * @param ipAdress
+	 * 		IP-address, the client will try to connect to
+	 * @param port
+	 * 		port, the client will try to connect to
+	 */
 	public OpenIGTLinkStreamingClient(String ipAdress, int port, 
 			MessageParser messageParser) {
 		this(ipAdress, port, DEFAULT_THREADPOOL_SIZE, messageParser);

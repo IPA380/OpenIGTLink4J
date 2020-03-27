@@ -33,6 +33,19 @@ public abstract class OpenIGTLinkServer extends MessageHandler
 	 * @param port
 	 *            port, the server will be listening to
 	 */
+	@Deprecated
+	public OpenIGTLinkServer(int port) {
+		this.port = port;
+		log = LoggerFactory.getLogger(this.getClass());
+		server = new Server(port, this, null);
+	}
+
+	/**
+	 * Destination constructor
+	 * 
+	 * @param port
+	 *            port, the server will be listening to
+	 */
 	public OpenIGTLinkServer(int port, MessageParser messageParser) {
 		this.port = port;
 		log = LoggerFactory.getLogger(this.getClass());

@@ -45,6 +45,19 @@ public abstract class OpenIGTLinkClient extends MessageHandler
 	 * @param port
 	 * 		port, the client will try to connect to
 	 */
+	@Deprecated
+	public OpenIGTLinkClient(String ipAdress, int port) {
+		this(ipAdress, port, null);
+	}
+
+	/**
+	 * Destination constructor
+	 * 
+	 * @param ipAdress
+	 * 		IP-address, the client will try to connect to
+	 * @param port
+	 * 		port, the client will try to connect to
+	 */
 	public OpenIGTLinkClient(String ipAdress, int port, 
 			MessageParser messageParser) {
 		this.ipAdress = ipAdress;

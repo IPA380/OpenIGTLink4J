@@ -25,7 +25,7 @@ import util.MetaData;
  * @author Andreas Rothfuss
  *
  */
-public abstract class OpenIGTMessage implements IOpenIGTLinkMessage{
+public abstract class OpenIGTMessage{
 
 	/**
 	 * Object containing the {@link Header} of the {@link OpenIGTMessage}
@@ -114,6 +114,17 @@ public abstract class OpenIGTMessage implements IOpenIGTLinkMessage{
     }
 
 	/**
+	 *** To create body from body byte array
+	 * 
+	 * @return byte [] representing the message body
+	 * 
+	 * @throws IllegalAccessException if the method is accessed while 
+	 * the body is not ready to be a packed or the method is not 
+	 * implemented for the class
+	 */
+	public abstract byte[] getBody();
+
+	/**
 	 * generate the serialized representation of the {@link OpenIGTMessage}
 	 * 
 	 * @return
@@ -171,18 +182,29 @@ public abstract class OpenIGTMessage implements IOpenIGTLinkMessage{
      */
 	abstract protected boolean UnpackBody(byte[] body);
 
-
-	@Override
+	/**
+	 *** Unique device name.
+	 *** 
+	 * @return The name of the device
+	 **/
 	public String getDeviceName() {
         return this.getHeader().getDeviceName();
 	}
 	
-	@Override
+	/**
+	 *** Message data type.
+	 *** 
+	 * @return The data type of the message
+	 **/
 	public String getDataType() {
         return this.getHeader().getDataType();
 	}
 
-	@Override
+	/**
+	 *** header.
+	 *** 
+	 * @return bytes array containing the header of the message
+	 **/
 	public Header getHeader() {
 		return header;
 	}

@@ -57,6 +57,18 @@ public abstract class OpenIGTLinkStreamingServer extends OpenIGTLinkServer {
 	 * @param port
 	 * 		port, the client will listen to
 	 */
+	@Deprecated
+	public OpenIGTLinkStreamingServer(int port) {
+		this(port, DEFAULT_THREADPOOL_SIZE, null);
+	}
+
+	/**
+	 * Destination constructor to create a new {@link OpenIGTLinkStreamingServer}
+	 * with a thread pool size defined by DEFAULT_THREADPOOL_SIZE
+	 * 
+	 * @param port
+	 * 		port, the client will listen to
+	 */
 	public OpenIGTLinkStreamingServer(int port, MessageParser messageParser) {
 		this(port, DEFAULT_THREADPOOL_SIZE, messageParser);
 	}
