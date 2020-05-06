@@ -15,8 +15,6 @@ import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import network.stream.ServerThread;
-
 import msg.OpenIGTMessage;
 import protocol.MessageHandler;
 import protocol.MessageParser;

@@ -12,7 +12,8 @@
 package network;
 
 import java.io.IOException;
-import java.net.Socket;
+
+import javax.net.SocketFactory;
 
 import msg.OpenIGTMessage;
 import protocol.MessageParser;
@@ -24,6 +25,10 @@ import protocol.MessageParser;
  * 
  */
 public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSender, IOpenIGTNetworkNode{
+
+	public static SocketFactory DEFAULT_SOCKET_FACTORY = SocketFactory.getDefault();
+	
+	private SocketFactory socketFactory;
 
 	/** The {@link MessageParser} */
 	public final MessageParser messageParser;
@@ -50,12 +55,35 @@ public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSen
      */
 	public ClientThread(OpenITGNode client, String ip, int port, boolean connectionRetry, 
 			MessageParser messageParser) {
+		this(client, ip, port, connectionRetry, messageParser, null);
+	}
+	
+	/**
+     * Constructor to create a new {@link ClientThread} and start it
+     * 
+     * @param client
+     * 		the {@link OpenITGNode} that will handle messages
+     * @param ip
+     * 		the ip the {@link ClientThread} will connect to
+     * @param port
+     * 		the port the {@link ClientThread} will connect to
+	 * @param socketFactory 
+	 * 		the {@link SocketFactory} to be used to create sockets
+     */
+	public ClientThread(OpenITGNode client, String ip, int port, boolean connectionRetry, 
+			MessageParser messageParser, SocketFactory socketFactory) {
 		super("ClientThread");
 		this.client = client;		
 		this.ip = ip;
 		this.port = port;
 		this.connectionRetry = connectionRetry;
 		this.messageParser = messageParser;
+		if (socketFactory != null) {
+			this.socketFactory = socketFactory;
+		}
+		else {
+			this.socketFactory = DEFAULT_SOCKET_FACTORY;
+		}
 	}
 
 	@Override
@@ -64,7 +92,9 @@ public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 		if (netManager == null) {
 			/* connect to the server */
 			try {
-				netManager = new NetManager(new Socket(ip, port), client, this, messageParser);
+				netManager = new NetManager(
+						socketFactory.createSocket(ip, port), 
+						client, this, messageParser);
 			} catch (IOException e) {}
 		}
 		else {

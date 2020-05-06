@@ -19,7 +19,7 @@ import java.util.Iterator;
 
 import network.NetManager;
 import network.OpenITGNode;
-import network.stream.ServerThread;
+import network.ServerThread;
 import protocol.MessageParser;
 
 public class ForwardServerThread extends ServerThread {
@@ -34,6 +34,7 @@ public class ForwardServerThread extends ServerThread {
 		this.forwardPort = forwardPort;
 	}
 
+	@Override
 	protected Socket handleClientConnection() throws UnknownHostException, IOException {
 		Socket socket = null;
 		try {
@@ -49,6 +50,7 @@ public class ForwardServerThread extends ServerThread {
 		return socket;
 	}
 
+	@Override
 	protected NetManager[] createNewNetManager(Socket clientSocket, 
 			Socket additionalSocket) {
 		return new NetManager[] {

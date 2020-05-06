@@ -9,7 +9,7 @@
   PURPOSE.  See the above copyright notices for more information.
 =========================================================================*/ 
  
-package network.stream;
+package network;
 
 import java.io.IOException;
 import java.net.ConnectException;
@@ -18,15 +18,11 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import network.Client;
-import network.ClientThread;
-import network.IOpenIGTMessageSender;
-import network.IOpenIGTNetworkNode;
-import network.MyLoopedRunnable;
-import network.NetManager;
-import network.OpenITGNode;
-import protocol.MessageParser;
+import javax.net.ServerSocketFactory;
+import javax.net.SocketFactory;
+
 import msg.OpenIGTMessage;
+import protocol.MessageParser;
 
 /**
  *** This class represents an server that accepts clients automatically
@@ -36,6 +32,10 @@ import msg.OpenIGTMessage;
  */
 public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSender, IOpenIGTNetworkNode{
 
+	public static ServerSocketFactory DEFAULT_SOCKET_FACTORY = ServerSocketFactory.getDefault();
+	
+	private ServerSocketFactory socketFactory;
+	
 	/** The {@link MessageParser} */
 	public final MessageParser messageParser;
 
@@ -57,18 +57,39 @@ public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSen
      * 
      * @param client
      * 		the {@link OpenITGNode} that will handle messages
+     * @param port
+     * 		the port the {@link ServerThread} will lsiten to
+     */
+	public ServerThread(OpenITGNode server, int port, int maxNumClients, 
+			MessageParser messageParser){
+		this(server, port, maxNumClients, messageParser, null);
+	}
+
+	/**
+     * Constructor to create a new {@link ServerThread} and start it
+     * 
+     * @param client
+     * 		the {@link OpenITGNode} that will handle messages
      * @param ip
      * 		the ip the {@link ClientThread} will connect to
      * @param port
      * 		the port the {@link ClientThread} will connect to
+	 * @param socketFactory 
+	 * 		the {@link ServerSocketFactory} to be used to create sockets
      */
 	public ServerThread(OpenITGNode server, int port, int maxNumClients, 
-			MessageParser messageParser){
+			MessageParser messageParser, ServerSocketFactory socketFactory){
 		super("ServerThread");
 		this.server = server;
 	    this.serverPort = port;
 	    this.maxNumClients = maxNumClients;
 	    this.messageParser = messageParser;
+		if (socketFactory != null) {
+			this.socketFactory = socketFactory;
+		}
+		else {
+			this.socketFactory = DEFAULT_SOCKET_FACTORY;
+		}
 	    
 	    netManagers = new ConcurrentLinkedQueue<NetManager>();
 
@@ -153,7 +174,7 @@ public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 	 */
 	void openServerSocket() {
 	    try {
-	        this.serverSocket = new ServerSocket(this.serverPort);
+	        this.serverSocket = socketFactory.createServerSocket(this.serverPort);
 	    } catch (IOException e) {
 	        throw new RuntimeException("Cannot open port " + serverPort, e);
 	    }
