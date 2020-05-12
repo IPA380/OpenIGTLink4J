@@ -12,9 +12,10 @@
 package network;
 
 import java.io.IOException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 import javax.net.SocketFactory;
-
 import msg.OpenIGTMessage;
 import protocol.MessageParser;
 
@@ -25,6 +26,9 @@ import protocol.MessageParser;
  * 
  */
 public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSender, IOpenIGTNetworkNode{
+
+//	private static final String[] protocols = new String[] {"TLSv1.1"};
+//	private static final String[] cipher_suites = new String[] {"TLS_AES_128_GCM_SHA256"};
 
 	public static SocketFactory DEFAULT_SOCKET_FACTORY = SocketFactory.getDefault();
 	
@@ -93,9 +97,11 @@ public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 			/* connect to the server */
 			try {
 				netManager = new NetManager(
-						socketFactory.createSocket(ip, port), 
+						createSocket(), 
 						client, this, messageParser);
-			} catch (IOException e) {}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		else {
 			try {
@@ -105,6 +111,15 @@ public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 		if (connectionRetry == false){
 			alive = false;
 		}
+	}
+
+	private Socket createSocket() throws IOException, UnknownHostException {
+		Socket retVal = socketFactory.createSocket(ip, port);
+//		if (retVal instanceof SSLSocket) {
+//			((SSLSocket)retVal).setEnabledProtocols(protocols);
+//			((SSLSocket)retVal).setEnabledCipherSuites(cipher_suites);
+//		}
+		return retVal;
 	}
 	
 	@Override

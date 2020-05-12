@@ -189,7 +189,7 @@ public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 	
 	@Override
 	public void report(IOException e, NetManager netManager) {
-		log.info("Client " + netManager.getSocketInetAdressString() + " disconnected");
+		log.info("Client " + netManager.getSocketInetAdressString() + " disconnected. Cause: " + e);
 		netManager.stop();
 		netManagers.remove(netManager);
 	}
