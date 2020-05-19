@@ -56,7 +56,12 @@ public class StatusMessage extends OIGTL_DataMessage {
      **/
     public StatusMessage(String deviceName, Status status) {
             this(deviceName);
-            setStatus(status);
+            if (status != null) {
+            	setStatus(status);				
+			}
+            else {
+            	setStatus(new Status(STATUS.INVALID));
+            }
     }
   
     /**

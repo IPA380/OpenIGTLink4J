@@ -147,7 +147,8 @@ public class Status {
 	 * @param errorName
 	 * @param statusString
 	 */
-	public Status(int code, long subCode, String errorName, String statusString) { this.code = STATUS.fromValue(code);
+	public Status(int code, long subCode, String errorName, String statusString) { 
+		this.code = STATUS.fromValue(code);
 		this.subCode = subCode;
 		this.errorName = errorName + '\0';
 		this.statusString = statusString + '\0';
