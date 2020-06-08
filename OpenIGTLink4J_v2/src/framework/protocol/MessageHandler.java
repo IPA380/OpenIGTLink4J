@@ -35,34 +35,34 @@ public abstract class MessageHandler implements IOpenIGTLinkMessageListener {
 	@Override
 	public void messageReceived(OpenIGTMessage message) {
 		if (message != null)
-			log.debug("Message received: {}", message);
+			log.trace("Message received: {}", message);
 	}
 
 	@Override
 	public OIGTL_DataMessage getMessageReceived(OIGTL_GetMessage message) {
 		if (message != null)
-			log.debug("Message received: ", message);
+			log.trace("Message received: {}", message);
 		return null;		
 	}
 
 	@Override
 	public OIGTL_RTSMessage sttMessageReceived(OIGTL_STTMessage message, IOpenIGTMessageSender replyTo) {
 		if (message != null)
-			log.debug("Message received: ", message);
+			log.trace("Message received: {}", message);
 		return null;
 	}
 
 	@Override
 	public OIGTL_RTSMessage stpMessageReceived(OIGTL_STPMessage message, IOpenIGTMessageSender replyTo) {
 		if (message != null)
-			log.debug("Message received: ", message);
+			log.trace("Message received: {}", message);
 		return null;
 	}
 
 	@Override
 	public void rtsMesssageReceived(OIGTL_RTSMessage message, IOpenIGTMessageSender replyTo) {
 		if (message != null)
-			log.debug("Message received: ", message);
+			log.trace("Message received: {}", message);
 	}
 
 }
