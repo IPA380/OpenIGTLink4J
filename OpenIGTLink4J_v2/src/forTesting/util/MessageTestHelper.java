@@ -59,27 +59,4 @@ public class MessageTestHelper {
 		}
 		return retVal;
 	} 
-
-	public static String[] bytesToHex(byte[] bytes) {
-		char[] hexChars = new char[bytes.length * 2];
-		for (int j = 0; j < bytes.length; j++) {
-			int v = bytes[j] & 0xFF;
-			hexChars[j * 2] = HEX_ARRAY[v >>> 4];
-			hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
-		}
-
-		String[] hexString = new String[hexChars.length/2];
-		short byteCounter = 0;
-
-		for (int j = 0; j < hexString.length; j++) {
-			hexString[j] = "0x" + hexChars[byteCounter];
-			byteCounter++;
-			if(byteCounter<hexChars.length) {
-				hexString[j] += hexChars[byteCounter];
-				byteCounter++;
-			}
-		}
-
-		return hexString;
-	}
 }

@@ -18,6 +18,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import msg.point.PointMessageTest;
+import msg.point.PointsTest;
 import msg.sensor.SensorMessageTest;
 import msg.string.StringMessageTest;
 import msg.tdata.TrackingDataMessageTest;
@@ -32,8 +33,8 @@ import msg.trajectory.TrajectoryMessageTest;
 	SensorMessageTest.class,
 	StringMessageTest.class,
 	TrackingDataMessageTest.class,
-	TrajectoryMessageTest.class
-	
+	TrajectoryMessageTest.class,
+	PointsTest.class
 })
 
 public class TestV2Messages {

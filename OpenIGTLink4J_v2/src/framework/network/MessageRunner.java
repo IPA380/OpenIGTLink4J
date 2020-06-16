@@ -18,14 +18,13 @@ import msg.OIGTLMessageType;
 import msg.OIGTL_GetMessage;
 import msg.OIGTL_HeaderOnlyMessage;
 import msg.OIGTL_RTSMessage;
+import msg.OIGTL_STPMessage;
 import msg.OIGTL_STTMessage;
 import msg.OpenIGTMessage;
 import msg.RawOpenIGTMessage;
-import msg.OIGTL_STPMessage;
 import msg.capability.CapabilityMessage;
 import msg.capability.GetCapabilityMessage;
 import protocol.IOpenIGTLinkMessageListener;
-import protocol.QueryMechanism;
 import util.Header;
 import util.RTSMessageStatus;
 
@@ -163,7 +162,7 @@ public class MessageRunner extends NetManagerRunner {
 		/* The receiver of "STT_<datatype>" or "STP_<datatype>" message must return 
 		 * "RTS_<datatype>" message with the same name as the query message to notify 
 		 * that the receiver receives the query.*/
-		String dataType = QueryMechanism.getReplyDataType(message.getDataType());
+		String dataType = netManager.messageParser.getReplyDataType(message.getDataType());
 		if (reply == null) {
 			/* return null body message */
 			reply = new OIGTL_RTSMessage(dataType, message.getDeviceName(), RTSMessageStatus.Error);
@@ -228,7 +227,7 @@ public class MessageRunner extends NetManagerRunner {
 		 * type <datatype> and the same name as the query message. A "GET_<datatype>" 
 		 * message without device name requests any available data. If data is not 
 		 * available, a returned message must be null body (data size = 0).*/
-		String replyDataType = QueryMechanism.getReplyDataType(message.getDataType());
+		String replyDataType = netManager.messageParser.getReplyDataType(message.getDataType());
 		if (reply == null) {
 			/* return null body message */
 			reply = new OIGTL_HeaderOnlyMessage(replyDataType, message.getDeviceName());
