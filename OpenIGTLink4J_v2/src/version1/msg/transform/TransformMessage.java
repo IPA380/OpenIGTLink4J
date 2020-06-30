@@ -87,7 +87,9 @@ public class TransformMessage extends OIGTL_DataMessage {
 	public boolean UnpackBody(byte[] body) {
 		log.trace("Body size: "+ body.length + " date size: "+ body.length);
  
-		transform = new Transform(body);
+		if (body != null && body.length == Transform.IGTL_TRANSFORM_SIZE) {
+			transform = new Transform(body);
+		}
 
 		return true;
 	}
