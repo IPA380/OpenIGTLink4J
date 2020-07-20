@@ -47,6 +47,10 @@ public abstract class MockMessageData<T> {
 
 	protected abstract void parseLine(String string);
 
+	public ArrayList<T> getAll() {
+		return values;
+	}
+
 	/**
 	 * @param sensorValues the sensorValues to set
 	 */

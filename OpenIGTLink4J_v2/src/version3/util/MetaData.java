@@ -84,8 +84,13 @@ public class MetaData {
 	 * @param value
 	 */
 	public void addKeyValuePair(String key, String value){
-		keys.add(key);
-		values.add(value);
+		if (keys.contains(key)) {
+			values.set(keys.indexOf(key), value);
+		}
+		else {
+			keys.add(key);
+			values.add(value);
+		}
 	}
 
 	/**
