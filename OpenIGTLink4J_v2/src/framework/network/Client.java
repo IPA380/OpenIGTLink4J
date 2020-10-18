@@ -52,9 +52,6 @@ public class Client extends OpenITGNode {
 			MessageParser messageParser) throws UnknownHostException, IOException {
 		super(messageHandler);
 		this.start(ip, port, automaticConnectionRetry, messageParser);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {}
 	}
 
 	/**

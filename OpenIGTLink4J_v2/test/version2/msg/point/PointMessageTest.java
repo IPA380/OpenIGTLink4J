@@ -162,6 +162,7 @@ public class PointMessageTest {
 		TimeUnit.SECONDS.sleep(2);
 		TestMessageHandler clientMessageHandler = new TestMessageHandler(false);
     	new Client("127.0.0.1", 30010, clientMessageHandler, false, null);	
+		TimeUnit.MILLISECONDS.sleep(10);
     	PointMessage testMessage;
 		Scanner s = new Scanner(System.in);
     	for(int i = 1; i<=1000; i=i+100) {
