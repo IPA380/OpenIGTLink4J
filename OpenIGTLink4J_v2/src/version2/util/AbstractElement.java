@@ -14,6 +14,7 @@ package util;
 import java.util.Arrays;
 
 import msg.point.PointMessage;
+import msg.trajectory.TrajectoryElement;
 import msg.trajectory.TrajectoryMessage;
 
 /**
@@ -74,17 +75,22 @@ public abstract class AbstractElement {
 	
 	@Override
 	public boolean equals(Object otherObj){
-	    AbstractElement other = (AbstractElement) otherObj;
-	    
-	    boolean retVal = true;
-	    
-	    retVal &= name.equals(other.getName());
-	    retVal &= groupName.equals(other.getGroupName());
-	    retVal &= Arrays.equals(rgba, other.getRGBA());
-	    retVal &= radius == other.getRadius();
-	    retVal &= owner.equals(other.getOwner());
-	    
-	    return retVal;
+		if (otherObj instanceof AbstractElement) {
+		    AbstractElement other = (AbstractElement) otherObj;
+		    
+		    boolean retVal = true;
+		    
+		    retVal &= name.equals(other.getName());
+		    retVal &= groupName.equals(other.getGroupName());
+		    retVal &= Arrays.equals(rgba, other.getRGBA());
+		    retVal &= radius == other.getRadius();
+		    retVal &= owner.equals(other.getOwner());
+		    
+		    return retVal;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	/**

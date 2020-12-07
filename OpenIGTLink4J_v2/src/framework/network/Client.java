@@ -71,6 +71,7 @@ public class Client extends OpenITGNode {
 			clientThread = new ClientThread(this, ip, port, automaticConnectionRetry, messageParser);
 		}
 		if (!clientThread.isConnected()){
+			clientThread.update();
 			threadPool = Executors.newFixedThreadPool(1);
 			threadPool.execute(clientThread);
 		}

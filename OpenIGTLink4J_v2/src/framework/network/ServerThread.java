@@ -19,7 +19,6 @@ import java.net.UnknownHostException;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.net.ServerSocketFactory;
-import javax.net.SocketFactory;
 
 import msg.OpenIGTMessage;
 import protocol.MessageParser;
@@ -99,16 +98,23 @@ public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 	@Override
     public void update(){
     	/* if another client is allowed */
-    	if (netManagers.size() <= maxNumClients){
     		/* wait for new connection */
             Socket clientSocket = null;
             Socket additionalSocket = null;
             try {
                 clientSocket = this.serverSocket.accept();
-                log.info("Client " + clientSocket.getInetAddress().toString().replace("/", "") 
+            	if (netManagers.size() < maxNumClients){
+            		log.info("Client " + clientSocket.getInetAddress().toString().replace("/", "") 
                 		+ ":" + clientSocket.getPort() + " connected to server " + 
                 		clientSocket.getLocalSocketAddress().toString().replace("/",  ""));
- 	           	additionalSocket = handleClientConnection();
+	 	           	additionalSocket = handleClientConnection();
+            	}
+            	else {
+            		log.info("Client " + clientSocket.getInetAddress().toString().replace("/", "") 
+                    		+ ":" + clientSocket.getPort() + " rejected. Maximum number of client "
+                    				+ "connections exceeded");
+            		clientSocket.close();
+            	}
             } catch (IOException e) {
             	log.trace("Caught an " + e.getClass());
                 if(isAlive()) {
@@ -129,8 +135,7 @@ public class ServerThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 	            for (int i = 0; i < newNetManagers.length; i++) {
 		            netManagers.add(newNetManagers[i]);
 				}
-			}	            
-    	}
+			}	  
     	else{
     		try {
 				Thread.sleep(20);

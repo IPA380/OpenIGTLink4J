@@ -113,6 +113,26 @@ public class Trajectory {
 	}
 	
 	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Trajectory) {
+			Trajectory trajObj = (Trajectory)obj;
+		    
+		    boolean retVal = true;
+		    retVal &= getNumberOfTrajectoryElements() == trajObj.getNumberOfTrajectoryElements();
+		    if (!retVal) {
+				return retVal;
+			}
+		    for (int i = 0; i < getNumberOfTrajectoryElements(); i++) {
+				retVal &= getTrajectoryElement(i).equals(trajObj.getTrajectoryElement(i));
+			}
+			return retVal;
+		}
+		else {
+			return super.equals(obj);
+		}
+	}
+	
+	@Override
 	public String toString() {        
 		String trajectoryString = "";
 		

@@ -74,17 +74,21 @@ public class TrajectoryElement extends AbstractElement{
 	
 	@Override
 	public boolean equals(Object otherObj){
-	    TrajectoryElement other = (TrajectoryElement) otherObj;
+		if (otherObj instanceof TrajectoryElement) {
+		    TrajectoryElement other = (TrajectoryElement) otherObj;
+		    
+		    boolean retVal = true;
+		    
+		    retVal &= super.equals(otherObj);
+		    retVal &= type.code == other.getType();
+		    retVal &= Arrays.equals(entryPosition, other.getEntryPosition());
+		    retVal &= Arrays.equals(targetPosition, other.getTargetPosition());
 	    
-	    
-	    boolean retVal = true;
-	    
-	    retVal &= super.equals(otherObj);
-	    retVal &= type.code == other.getType();
-	    retVal &= Arrays.equals(entryPosition, other.getEntryPosition());
-	    retVal &= Arrays.equals(targetPosition, other.getTargetPosition());
-	    
-	    return retVal;
+		    return retVal;
+		}
+		else {
+			return false;
+		}
 	}
 
 	/**

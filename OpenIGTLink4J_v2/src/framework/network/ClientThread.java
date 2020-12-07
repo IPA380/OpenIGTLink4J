@@ -152,6 +152,9 @@ public class ClientThread extends MyLoopedRunnable implements IOpenIGTMessageSen
 
 	@Override
 	public void send(OpenIGTMessage message) throws IOException {
+		if (netManager == null) {
+			throw new IOException("Not Connected");
+		}
 		netManager.send(message);
 	}
 
