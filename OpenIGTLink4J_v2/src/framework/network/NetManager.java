@@ -245,11 +245,12 @@ public class NetManager implements IOpenIGTMessageSender{
 
 	@Override
 	public void send(OpenIGTMessage msg) throws IOException {
-		log.trace("Sending message: " + msg.toString(), Byte.MAX_VALUE);
-		
 		messageParser.modifyBeforeSend(msg);
-		
+
 		byte[] msgBytes = msg.getBytes();
+		log.trace("Sending new message. Header: {}", msg.getHeader().toString());
+		log.trace("Sending message: " + msg.toString(), Byte.MAX_VALUE);
+	
 		send(msgBytes);
 	}
 

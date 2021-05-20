@@ -60,10 +60,9 @@ public class MessageRunner extends NetManagerRunner {
 						new Header(rawMsg.headerBytes), rawMsg.body);
 				if (message == null) {
 					log.warn("Message couldn't be parsed!");
-				}
-					
-				
+				}	
 				else {		
+					log.trace("New message received: {}", message.toString());
 					/* check if the message is valid or the message parser is set to 
 					 * ignore invalid messages */
 					if (netManager.messageParser.testReceivedMessageValidity(message) || 

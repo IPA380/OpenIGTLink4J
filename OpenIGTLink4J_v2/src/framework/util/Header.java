@@ -91,7 +91,7 @@ public class Header {
 	    /* unsigned int 64 bits */
 	    crc = bytesArray.getULong(8);
 	    
-	    LoggerFactory.getLogger(this.getClass()).trace("New header: "+this, Byte.MAX_VALUE);
+	    LoggerFactory.getLogger(this.getClass()).trace("New header from bytes: "+this, Byte.MAX_VALUE);
 	}
 	
 	/**

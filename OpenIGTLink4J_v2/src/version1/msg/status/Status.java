@@ -135,8 +135,8 @@ public class Status {
 	public Status(STATUS code, long subCode, String errorName, String statusString) {
 		this.code = code;
 		this.subCode = subCode;
-		this.errorName = errorName + '\0';
-		this.statusString = statusString + '\0';
+		this.setErrorName(errorName);
+		this.setStatusString(statusString);
 	}
 
 	/**
@@ -150,8 +150,8 @@ public class Status {
 	public Status(int code, long subCode, String errorName, String statusString) { 
 		this.code = STATUS.fromValue(code);
 		this.subCode = subCode;
-		this.errorName = errorName + '\0';
-		this.statusString = statusString + '\0';
+		this.setErrorName(errorName);
+		this.setStatusString(statusString);
 	}
 	
 	/**
@@ -214,7 +214,12 @@ public class Status {
 	 *** 
 	 */
 	public void setErrorName(String errorName) {
-		this.errorName = errorName;
+		if (!errorName.endsWith("\0")) {
+			this.errorName = errorName + '\0';			
+		}
+		else {
+			this.errorName = errorName;			
+		}
 	}
 
 	/**
@@ -232,7 +237,12 @@ public class Status {
 	 *** 
 	 */
 	public void setStatusString(String statusString) {
-		this.statusString = statusString;
+		if (!statusString.endsWith("\0")) {
+			this.statusString = statusString + '\0';
+		}
+		else {
+			this.statusString = statusString;			
+		}
 	}
 
 	/**
